@@ -6,7 +6,7 @@
 				<span class="btn btn-prev"> &#10094;</span>
 			</template>
 			<div v-for="n of 5" :key="n">
-				<img :src="$page()['image'+`${n}`]" alt="">
+				<img class="hero_main_img" :src="$page()['image'+`${n}`]">
 				<h1 class="hero_main_title">{{ $page()['title'+`${n}`] }}</h1>
 				<div class="hero_main_text" v-if="n === 3">
 					<p>{{ $page()['description'+`${n}`] }}</p>
@@ -97,26 +97,46 @@ export default {
 </script>
 
 <style lang="sass">
+.hero_main_img
+	@media (max-width: 450px)
+		height: 50vh
+		object-fit: cover 
+
 .hero_main_title
 	position: absolute
 	width: 450px
 	top: 10rem
 	left: 13rem
 	color:#bf0d0d
+	@media (max-width: 450px)
+		width: 320px 
+		top: 3rem
+		left: 1rem
+		font-size: 20px
 
 .hero_main_text
 	position: absolute
 	top: 14rem
 	left: 13rem
+	@media (max-width: 450px)
+		top: 5rem
+		left: 1rem
 	p 
 		width: 420px
 		font-family: Calibri,serif
 		font-size: 21px
+		@media (max-width: 450px)
+			font-size: 16px
 
 .hero_main_btn 
 	position: absolute
 	bottom: 5rem
 	left: 13rem
+	@media (max-width: 450px)
+		bottom: 4rem
+		left: 1rem
+		margin: 0
+		line-height: 30px
 
 /* GO TO NEXT SLIDE */
 .slide-next-enter-active,
@@ -156,6 +176,8 @@ export default {
 	left: 1%
 	transition: transform 0.3s ease-in-out
 	user-select: none
+	@media (max-width: 450px)
+		display: none
 
 .btn-next
 	left: auto
