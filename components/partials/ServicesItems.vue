@@ -106,8 +106,6 @@ export default {
 		background: #fff
 		padding: 23px 27px
 		transition: background .4s ease
-		&:nth-child(4n)
-			margin-right: 0
 		&:hover
 			.services-items-title,
 			.services-items-go-to span
@@ -182,12 +180,7 @@ export default {
 		&-item
 			max-width: calc(33.3% - 16px)
 			margin-right: 16px
-			&:nth-child(odd)
-				margin-right: 16px
-			&:nth-child(3n)
-				margin-right: 0
-			&:nth-child(4n)
-				margin-right: 16px
+			
 		&-title
 			min-height: 50px
 .services-items-item.animate-home-services
@@ -199,12 +192,18 @@ export default {
 	border-radius: 20px
 	position: relative
 	box-shadow: 5px 5px 5px #8e8a8a 
-	background: #01286b url(https://demo-admin.astel.kz//storage/elfinder/test/cell_bg.png) no-repeat
+	background: #002b85 url(https://demo-admin.astel.kz//storage/elfinder/test/cell_bg.png) no-repeat
+	// background: #002b85 url(https://demo-admin.astel.kz//storage/elfinder/test/cell_bg.png) no-repeat
 	background-position: 4em 12em
 	background-size: 100%
+	@media (max-width: 456px)
+		margin: 1em auto
+
 .services-items-item.animate-home-services:nth-child(4n),
 .services-items-item.animate-inner-services:nth-child(4n)
 	margin-right: 0
+	@media (max-width: 456px)
+		margin-right: 50px
 .services-items-item.animate-inner-services
 	width: 15em
 	padding: 25px 25px
