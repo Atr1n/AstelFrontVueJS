@@ -21,7 +21,7 @@
 				<button class="menu-close" @click="close"><close /></button>
 			</header>
 			<template v-for="(item, index) in menuItems">
-				<template v-if="item.childPages.length">
+				<template v-if="item.childPages.length || item.id == 11">
 					<div class="menu-item" @click="setDropdown(item.id)">
 						<p class="menu-link">{{ item.name }}</p>
 						<arrow />
@@ -32,18 +32,29 @@
 							v-if="currentDropdown == item.id"
 						>
 							<nuxt-link
+								v-if="item.id !== 11"
 								:to="$url(item.slug)"
 								class="menu-dropdown-link"
-								>{{ item.name }}</nuxt-link
-							>
+								>{{ item.name }}</nuxt-link>
 							<nuxt-link
 								:to="$url(child.slug)"
 								class="menu-dropdown-link"
 								v-for="(child, index) in item.childPages"
 								:key="index"
-								>{{ child.name }}</nuxt-link
-							>
+								>{{ child.name }}</nuxt-link>
+
+							<div v-if="item.id == 11" v-for="(item2,index2) in menuServiceItems">
+								<div class="menu-dropdown-link" :key="index2" data-header-item v-if="item2.childServices.length">
+									<nuxt-link :to="$url(item.slug)+$url(item2.slug)" class="menu-dropdown-link">{{ item2.name }}</nuxt-link>
+									<nuxt-link :to="$url(item.slug)+$url(child2.slug)" class="menu-dropdown-link" v-for="(child2, index2) in item2.childServices" :key="index2">
+										{{ child2.name }}
+										<nuxt-link :to="$url(item.slug)+$url(child2.slug)" class="menu-dropdown-link-last" v-for="(grand,index3) in item2.grandChildService" :key="index3" v-if="grand.parent_id === child2.id">{{ grand['name']['ru'] }}</nuxt-link>
+									</nuxt-link>
+								</div>
+							</div>
 						</div>
+
+
 					</transition>
 				</template>
 				<nuxt-link :to="$url(item.slug)" class="menu-item" v-else>
@@ -93,6 +104,7 @@ export default {
 	computed: {
 		...mapGetters({
 			menuItems: 'page/GET_MENU',
+			menuServiceItems: 'page/GET_MENU_SERVICES',
 			locale: 'translation/GET_LOCALE',
 			locales: 'translation/GET_LOCALES'
 		})

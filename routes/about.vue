@@ -98,14 +98,14 @@ export default {
 <style lang="sass">
 .about-page
 	&-docs
-		background: $bg-base
 		padding: 110px 50px 45px
+		background: $bg-base
 		.about-page-heading
 			width: 25%
 		.about-page-row
-			align-items: flex-start
 			max-width: 1200px
 			margin: 0 auto
+			align-items: flex-start
 		.page-text
 			max-width: 300px
 			line-height: 22px
@@ -116,17 +116,17 @@ export default {
 		&-item
 			width: 50%
 			display: flex
-			align-items: center
 			margin-bottom: 65px
+			align-items: center
 			img
 				width: 40px
 				height: 40px
-				flex-shrink: 0
 				margin-right: 20px
+				flex-shrink: 0
 	&-divider
 		height: 1px
-		background: #CECECE
 		margin: 30px 0
+		background: #CECECE
 	.layout-container
 		padding: 80px 50px 0
 		max-width: 1300px
@@ -135,8 +135,8 @@ export default {
 			padding-top: 0
 	&-row
 		display: flex
-		align-items: center
 		margin-bottom: 80px
+		align-items: center
 	&-heading
 		font-size: 24px
 		font-weight: 500
@@ -158,19 +158,19 @@ export default {
 			width: 20%
 			padding-left: 0
 	&-list
+		padding-left: 15px
 		margin-top: 10px
 		list-style-type: initial
-		padding-left: 15px
 		&-wrp
-			padding-left: 40px
 			display: flex
-			flex-direction: column
+			padding-left: 40px
 			justify-content: space-between
+			flex-direction: column
 		&-item
-			margin-bottom: 43px
-			padding-right: 50px
-			color: $color-red
 			max-width: 700px
+			padding-right: 50px
+			margin-bottom: 43px
+			color: $color-red
 			&:last-child
 				margin-bottom: 0
 	&-img
@@ -193,9 +193,9 @@ export default {
 			a
 				font-size: 14px
 		&-row
+			margin-bottom: 0
 			flex-direction: column
 			align-items: flex-start
-			margin-bottom: 0
 		&-col
 			width: 100%
 			padding-left: 0
@@ -207,8 +207,8 @@ export default {
 			font-size: 18px
 		&-img
 			max-width: 100%
-			width: 100%
 			min-height: initial
+			width: 100%
 			height: 237px
 			margin: 30px 0
 		&-list-wrp
@@ -270,9 +270,9 @@ export default {
 			a
 				font-size: 16px
 		&-row
+			margin-bottom: 80px
 			flex-direction: row
 			align-items: center
-			margin-bottom: 80px
 		&-col
 			width: 80%
 			padding: 0

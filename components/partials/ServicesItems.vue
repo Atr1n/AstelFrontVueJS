@@ -1,18 +1,20 @@
 <template>
 	<div class="services-items">
 		<div class="services-items-item animate-home-services" data-on-scroll-paginate
-			 v-for="(item, index) in services" :key="index">
-			<h4 style="margin: 0px 50px 10px 30px;/*position: absolute;*/ color: white;font-size:16px;" class="services-items-title">{{ item.name }}</h4>
-			<component style="z-index: 999;position: relative;"
-					   :is="isSameHost($pageUrl('services', item.slug)) ? 'nuxt-link' : 'a'"
-					   :href="isSameHost($pageUrl('services', item.slug)) ? $url($pageUrl('services', item.slug)) : $pageUrl('services', item.slug)"
-					   :to="$url($pageUrl('services', item.slug))" class="buttonMain --blue animate-home-hero buttonMain-hover"
-					   data-on-scroll-paginate
-					  v-if="item.serviceImages !== null" >
-				{{ 'Подробнее' }}
-				<!-- <svg width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l3.5 3.5L8 1" stroke="#fff" stroke-linecap="round"></path></svg> -->
-			</component>
-			<img class="service__item-img" :src="getSrcServiceImage(item.serviceImages)" alt="item.serviceImages">
+			v-for="(item, index) in services" :key="index">
+			<div class="services-item-wrap">
+				<h4 style="margin: 0px 50px 10px 30px;/*position: absolute;*/ color: white;font-size:16px;" class="services-items-title">{{ item.name }}</h4>
+				<component style="z-index: 999;position: relative;"
+						:is="isSameHost($pageUrl('services', item.slug)) ? 'nuxt-link' : 'a'"
+						:href="isSameHost($pageUrl('services', item.slug)) ? $url($pageUrl('services', item.slug)) : $pageUrl('services', item.slug)"
+						:to="$url($pageUrl('services', item.slug))" class="buttonMain --transparent animate-home-hero buttonMain-hover"
+						data-on-scroll-paginate
+						v-if="item.serviceImages !== null" >
+					{{ 'Подробнее' }}
+					<!-- <svg width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l3.5 3.5L8 1" stroke="#fff" stroke-linecap="round"></path></svg> -->
+				</component>
+				<img class="service__item-img" :src="getSrcServiceImage(item.serviceImages)" alt="item.serviceImages">
+			</div>
 		</div>
 	</div>
 </template>
@@ -184,20 +186,28 @@ export default {
 		&-title
 			min-height: 50px
 .services-items-item.animate-home-services
-	width: 15em
-	padding: 25px 25px
-	color: #fff 
-	height: 22em;
-	margin: 2em 3.22em 3em 0
+	width: 16em;
+	padding: 25px 25px;
+	color: #fff;
+	height: 21em;
+	margin: 0em 1.8em 1.8em 0;
 	border-radius: 20px
 	position: relative
-	box-shadow: 5px 5px 5px #8e8a8a 
-	background: #002b85 url(https://demo-admin.astel.kz//storage/elfinder/test/cell_bg.png) no-repeat
-	// background: #002b85 url(https://demo-admin.astel.kz//storage/elfinder/test/cell_bg.png) no-repeat
-	background-position: 4em 12em
-	background-size: 100%
+	box-shadow: 5px 5px 5px #8e8a8a
+	background: linear-gradient(50deg, #00236d, #003bb7)
 	@media (max-width: 456px)
 		margin: 1em auto
+.services-item-wrap
+	position: absolute
+	top: 0
+	left: 0
+	right: 0
+	padding: 25px 24px 25px 25px
+	bottom: 0
+	background: url(https://demo-admin.astel.kz/elfinder/connector?cmd=file&target=fls1_0YPRgdC70YPQs9C4L2NlbGxfYmdfYi5wbmc&_t=1642614210&_token=)
+	background-position: 0 0
+	background-size: 100%
+	background-repeat: no-repeat
 
 .services-items-item.animate-home-services:nth-child(4n),
 .services-items-item.animate-inner-services:nth-child(4n)
@@ -209,7 +219,7 @@ export default {
 	padding: 25px 25px
 	color: #fff
 	height: 12.4444em
-	margin: 2em 3.22em 3em 0
+	margin: 0em 1.8em 1.8em 0
 	border-radius: 20px
 	position: relative
 	box-shadow: 5px 5px 5px #8e8a8a
@@ -222,7 +232,7 @@ export default {
 	min-height: auto
 	line-height: 1.5
 	position: relative
-	margin: 0.5em 1em 1em 0.5em !important;
+	margin: 0 0 1em !important;
 
 .services-items-item a
 	display: block
@@ -233,9 +243,10 @@ export default {
     bottom: 25px
 .services-items-item .service__item-img
 	position: absolute
-	max-width: 185px
-	bottom: 25px
-	right: 25px
+	height: 60%
+	border-radius: 20px
+	bottom: 0
+	right: 0
 	z-index: 0
 .services-category .services-items-title
 	position: relative !important

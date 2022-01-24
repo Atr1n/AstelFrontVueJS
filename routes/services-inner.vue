@@ -74,17 +74,20 @@
 					<h2 class="services-category-heading">
 						{{ $page().service.name }}
 					</h2>
+
 					<div class="services-items">
 						<div class="services-items-item animate-inner-services" data-on-scroll-paginate
-							 v-for="(item, index) in $page().subcategories" :key="index">
-							<h2 style="margin: 0px 40px 10px 0px;position: absolute; color: white;font-size:14px;" class="services-items-title">{{ item.name }}</h2>
-							<component style="z-index: 999;position: relative;"
-									   :is="isSameHost($pageUrl('services', item.slug)) ? 'nuxt-link' : 'a'"
-									   :href="isSameHost($pageUrl('services', item.slug)) ? $url($pageUrl('services', item.slug)) : $pageUrl('services', item.slug)"
-									   :to="$url($pageUrl('services', item.slug))" class="buttonMain --blue animate-home-hero buttonMain-hover"
-									   data-on-scroll-paginate>
-								{{ 'Поподробнее' }}
-							</component>
+							v-for="(item, index) in $page().subcategories" :key="index">
+							<div class="services-item-wrap">
+								<h2 style="margin: 0px 40px 20px 0px;position: absolute; color: white;font-size:14px;" class="services-items-title">{{ item.name }}</h2>
+								<component style="z-index: 999;position: relative;"
+										:is="isSameHost($pageUrl('services', item.slug)) ? 'nuxt-link' : 'a'"
+										:href="isSameHost($pageUrl('services', item.slug)) ? $url($pageUrl('services', item.slug)) : $pageUrl('services', item.slug)"
+										:to="$url($pageUrl('services', item.slug))" class="buttonMain --transparent animate-home-hero buttonMain-hover"
+										data-on-scroll-paginate>
+									{{ 'Подробнее' }}
+								</component>
+							</div>
 						</div>
 					</div>
 
@@ -289,11 +292,17 @@ export default {
 		this.animateOnLoad();
 	},
 	methods: {
+		getSrcServiceImage (item) {
+			this.fullUrlImg =  this.urlForImg.concat(item)
+			if (item === null) return ""
+			return this.fullUrlImg;
+		},
 
 		getMime(url) {
 			let chunks = url.split('.')
 			return `video/${chunks[chunks.length - 1]}`
 		},
+
 		isSameHost(url) {
 			return !url.startsWith('http')
 		},
@@ -325,6 +334,11 @@ export default {
 </script>
 
 <style lang="sass">
+
+.services-items-item.animate-inner-services
+	height: 14em
+	background: linear-gradient(50deg, #00236d, #003bb7)
+	
 .services-category
 	padding: 40px 50px
 	.button

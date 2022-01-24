@@ -36,15 +36,19 @@
 							   v-else-if="index === 1"
 					>{{ item.name }}
 						<div class="header-serviceDrop">
-							<div class="serviceDrop__item" v-for="(item2,index2) in menuServiceItems">
-								<div class="header-nav-link" :key="index2" data-header-item v-if="item2.childServices.length">
-									<nuxt-link :to="$url(item.slug)+$url(item2.slug)" class="header-serviceDrop-title">{{ item2.name }}</nuxt-link>
-									<nuxt-link :to="$url(item.slug)+$url(child2.slug)" class="header-serviceDrop-link" v-for="(child2, index2) in item2.childServices" :key="index2">{{ child2.name }}</nuxt-link>
+							<div class="header-serviceContent">
+								<div v-for="(item2,index2) in menuServiceItems" class="header-serviceDrop__item-wrap">
+									<div class="header-nav-link" :key="index2" data-header-item v-if="item2.childServices.length">
+										<nuxt-link :to="$url(item.slug)+$url(item2.slug)" class="header-serviceDrop-title">{{ item2.name }}</nuxt-link>
+										<nuxt-link :to="$url(item.slug)+$url(child2.slug)" class="header-serviceDrop-link" v-for="(child2, index2) in item2.childServices" :key="index2">
+											{{ child2.name }}
+											<nuxt-link :to="$url(item.slug)+$url(child2.slug)" class="header-serviceDrop-link header-serviceDrop-underLink" v-for="(grand,index3) in item2.grandChildService" :key="index3" v-if="grand.parent_id === child2.id">{{ grand['name']['ru'] }}</nuxt-link>
+										</nuxt-link>
+									</div>
 								</div>
 							</div>
 						</div>
 					</nuxt-link>
-
 					<nuxt-link :to="$url(item.slug)" :key="index" data-header-item class="header-nav-link" v-else>{{ item.name }}</nuxt-link>
 				</template>
 
@@ -244,44 +248,113 @@ export default {
 				margin-bottom: 0
 			&:hover
 				color: $color-blue
+	&-serviceContent
+		display: grid
+		grid-template-columns: repeat(5, 1fr)
+		padding: 1rem 2rem
+		@media (max-width: 1280px)
+			grid-template-columns: repeat(4, 1fr)
 	&-serviceDrop
 		position: absolute
-		top: 100%
-		left: 33rem
-		display: grid
-		grid-template-columns: repeat(5,1fr)
-		gap: 3rem
-		padding: 30px 35px
-		z-index: 1
+		width: 1800px
+		top: 4.7rem
+		left: -22rem
+		margin: 0 auto
+		z-index: 1000
 		background: #fff
-		transform: translateX(-50%)
 		border-top: 3px solid $color-blue
 		border-bottom: 3px solid $color-red
 		box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1)
-		visibility: hidden
-		opacity: 0
+		// visibility: hidden
+		// opacity: 0
 		transition: all .3s ease
+		&__item-wrap 
+			width: 300px
+			@media (max-width: 1280px)
+				width: 270px
+			&:nth-child(6)
+				position: relative
+				left: 21.5rem
+				margin-top: -12rem
+				@media (max-width: 1750px)
+					left: 19.7rem
+				@media (max-width: 1536px)
+					left: 18.7rem
+				@media (max-width: 1280px)
+					left: 0
+			&:nth-child(7)
+				position: relative
+				left: 21.5rem
+				margin-top: -12rem
+				@media (max-width: 1750px)
+					left: 19.7rem
+				@media (max-width: 1536px)
+					left: 18.7rem
+				@media (max-width: 1280px)
+					left: 0
+			&:nth-child(8)
+				position: relative
+				left: 21.5rem
+				margin-top: -12rem
+				@media (max-width: 1750px)
+					left: 19.7rem
+				@media (max-width: 1536px)
+					left: 18.7rem
+				@media (max-width: 1280px)
+					left: 0
+
+
+		@media (max-width: 1747px)
+			width: 1650px
+			left: -23rem
+		@media (max-width: 1547px)
+			width: 1450px
+			left: -22.5rem
+		@media (max-width: 1280px)
+			width: 1180px
+			left: -22rem
+			
 		&-title
 			padding-bottom: 8px
-			font-size: 13px
+			font-size: 12px
 			white-space: nowrap
 			color: #868686
 			text-transform: uppercase
 			opacity: .6
+			@media (max-width: 1747px)
+				font-size: 10px
+			@media (max-width: 1280px)
+				font-size: 8px
 			&:last-child
 				margin-bottom: 0
 		&-link
-			display: flex
+			display: grid
 			padding-top: 7px
-			font-size: 10px
+			font-size: 12px
 			color: $color-black
 			font-weight: 500
 			text-decoration: underline black
 			text-transform: initial
+			@media (max-width: 1747px)
+				font-size: 10px
+			@media (max-width: 1547px)
+				width: 200px
+				font-size: 9px
+			@media (max-width: 1280px)
+				font-size: 8px
 			&:last-child
 				margin-bottom: 0
 			&:hover
 				color: $color-blue
+		&-underLink 
+			display: list-item
+			margin-left: 1rem
+			ist-style-type: revert
+			font-size: 10px
+			@media (max-width: 1747px)
+				font-size: 9px
+			@media (max-width: 1280px)
+				font-size: 8px
 	&-socials
 		margin-left: auto
 		display: flex

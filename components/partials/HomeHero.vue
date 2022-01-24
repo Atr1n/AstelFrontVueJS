@@ -7,20 +7,22 @@
 			</template>
 			<div v-for="n of 5" :key="n">
 				<img class="hero_main_img" :src="$page()['image'+`${n}`]">
-				<h1 class="hero_main_title">{{ $page()['title'+`${n}`] }}</h1>
-				<div class="hero_main_text" v-if="n === 3">
-					<p>{{ $page()['description'+`${n}`] }}</p>
+				<div class="hero_main_wrap">
+					<h1 class="hero_main_title">{{ $page()['title'+`${n}`] }}</h1>
+					<div class="hero_main_text" v-if="n === 3">
+						<p>{{ $page()['description'+`${n}`] }}</p>
+					</div>
+					<div class="hero_main_text" v-else>
+						<p>{{ $page()['description'+`${n}`] }}</p>
+					</div>
+					<component
+						:is="isSameHost($page()['link'+`${n}`]) ? 'nuxt-link' : 'a'"
+						:href="isSameHost($page()['link'+`${n}`]) ? $url($page()['link'+`${n}`]) : $page()['link'+`${n}`]"
+						:to="$url($page()['link'+`${n}`])" class="hero_main_btn buttonHome --blue animate-home-hero buttonHome-hover"
+						data-on-scroll-paginate
+						v-if="$page()['link'+`${n}`]">{{ $trans('Подробнее') }}
+					</component>
 				</div>
-				<div class="hero_main_text" v-else>
-					<p>{{ $page()['description'+`${n}`] }}</p>
-				</div>
-				<component
-					:is="isSameHost($page()['link'+`${n}`]) ? 'nuxt-link' : 'a'"
-					:href="isSameHost($page()['link'+`${n}`]) ? $url($page()['link'+`${n}`]) : $page()['link'+`${n}`]"
-					:to="$url($page()['link'+`${n}`])" class="hero_main_btn buttonHome --blue animate-home-hero buttonHome-hover"
-					data-on-scroll-paginate
-					v-if="$page()['link'+`${n}`]">{{ $trans('Подробнее') }}
-				</component>
 			</div>
 			<template slot="next">
 				<span class="btn btn-next"> &#10095;</span>
@@ -33,7 +35,6 @@
 
 <script>
 import {gsap} from "gsap";
-
 
 
 export default {
@@ -97,30 +98,31 @@ export default {
 </script>
 
 <style lang="sass">
+.hero_main_wrap
+	position: absolute
+	top: 10rem
+	left: 13rem
+	@media (max-width: 450px)
+		top: 5rem
+		left: 1rem
+		height: 50vh
+		object-fit: cover
+
 .hero_main_img
 	@media (max-width: 450px)
 		height: 50vh
 		object-fit: cover 
 
 .hero_main_title
-	position: absolute
 	width: 450px
-	top: 10rem
-	left: 13rem
+	margin-bottom: 1rem
 	color:#bf0d0d
 	@media (max-width: 450px)
 		width: 320px 
-		top: 3rem
-		left: 1rem
+		margin-bottom: 0
 		font-size: 20px
 
 .hero_main_text
-	position: absolute
-	top: 14rem
-	left: 13rem
-	@media (max-width: 450px)
-		top: 5rem
-		left: 1rem
 	p 
 		width: 420px
 		font-family: Calibri,serif
@@ -129,13 +131,9 @@ export default {
 			font-size: 16px
 
 .hero_main_btn 
-	position: absolute
-	bottom: 5rem
-	left: 13rem
-	@media (max-width: 450px)
-		bottom: 4rem
-		left: 1rem
+	@media (max-width: 450px)	
 		margin: 0
+		margin-top: 2rem
 		line-height: 30px
 
 /* GO TO NEXT SLIDE */
