@@ -99,6 +99,8 @@ export default {
 <style lang="sass">
 .services-items
 	display: flex
+	@media (max-width: 456px)
+		justify-content: center
 	&-item
 		width: 100%
 		max-width: calc(25% - 16px)
@@ -196,7 +198,8 @@ export default {
 	box-shadow: 5px 5px 5px #8e8a8a
 	background: linear-gradient(50deg, #00236d, #003bb7)
 	@media (max-width: 456px)
-		margin: 1em auto
+		margin: 1em 0
+	
 .services-item-wrap
 	position: absolute
 	top: 0
@@ -213,7 +216,7 @@ export default {
 .services-items-item.animate-inner-services:nth-child(4n)
 	margin-right: 0
 	@media (max-width: 456px)
-		margin-right: 50px
+		margin-right: 0
 .services-items-item.animate-inner-services
 	width: 15em
 	padding: 25px 25px
