@@ -224,16 +224,6 @@ export default {
 		opacity: 0
 		visibility: hidden
 		box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1)
-		//&:after
-		//	content: ''
-		//	position: absolute
-		//	width: 0
-		//	height: 0
-		//	left: 50%
-		//	transform: translateX(-50%)
-		//	border-style: solid
-		//	border-width: 0 5px 10px 5px
-		//	border-color: transparent transparent $color-blue transparent
 		&-link
 			position: relative
 			display: block
@@ -258,17 +248,17 @@ export default {
 		position: absolute
 		width: 1800px
 		top: 4.7rem
-		left: -22rem
+		left: -21.5rem
 		margin: 0 auto
-		z-index: 1000
+		z-index: 9999
 		background: #fff
 		border-top: 3px solid $color-blue
 		border-bottom: 3px solid $color-red
 		box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1)
-		// visibility: hidden
-		// opacity: 0
+		visibility: hidden
+		opacity: 0
 		transition: all .3s ease
-		&__item-wrap 
+		&__item-wrap
 			width: 300px
 			@media (max-width: 1280px)
 				width: 270px
@@ -282,6 +272,24 @@ export default {
 					left: 18.7rem
 				@media (max-width: 1280px)
 					left: 0
+			&:nth-child(5)
+				position: relative
+				top: 11.7rem
+				right: 22rem
+				@media (max-width: 1750px)
+					top: 10.2rem
+				@media (max-width: 1536px)
+					right: 22.8rem
+				@media (max-width: 1280px)
+					top: -12.3rem
+					right: -48.5rem
+			&:nth-child(4)
+				@media (max-width: 1750px)
+					position: relative
+					right: 2rem
+				@media (max-width: 1536px)
+					position: relative
+					right: 4rem
 			&:nth-child(7)
 				position: relative
 				left: 21.5rem
@@ -291,17 +299,21 @@ export default {
 				@media (max-width: 1536px)
 					left: 18.7rem
 				@media (max-width: 1280px)
-					left: 0
+					position: static
 			&:nth-child(8)
 				position: relative
-				left: 21.5rem
+				top: -12rem
+				left: 40.5rem
 				margin-top: -12rem
 				@media (max-width: 1750px)
-					left: 19.7rem
+					top: -10.9rem
+					left: 39rem
 				@media (max-width: 1536px)
-					left: 18.7rem
+					left: 30rem
 				@media (max-width: 1280px)
-					left: 0
+					margin-top: 0
+					top: 0
+					left: -52rem
 
 
 		@media (max-width: 1747px)

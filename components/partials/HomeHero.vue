@@ -5,7 +5,7 @@
 			<template slot="prev">
 				<span class="btn btn-prev"> &#10094;</span>
 			</template>
-			<div v-for="n of 5" :key="n">
+			<div v-for="n of 5" :key="n" v-if="$page()['image'+`${n}`]">
 				<img class="hero_main_img" :src="$page()['image'+`${n}`]">
 				<div class="hero_main_wrap">
 					<h1 class="hero_main_title">{{ $page()['title'+`${n}`] }}</h1>
@@ -45,9 +45,9 @@ export default {
 	data() {
 		return {
 			responsive: {
-				0: {items: 1, nav: false, autoplay: false},
-				600: {items: 1, nav: false, autoplay: false},
-				900: {items: 1, nav: false, autoplay: false}
+				0: {items: 1, nav: false, autoplay: true},
+				600: {items: 1, nav: false, autoplay: true},
+				900: {items: 1, nav: false, autoplay: true}
 			}
 		}
 	},
@@ -128,6 +128,7 @@ export default {
 		font-family: Calibri,serif
 		font-size: 21px
 		@media (max-width: 450px)
+			width: 100%
 			font-size: 16px
 
 .hero_main_btn 
@@ -160,7 +161,7 @@ export default {
 	transform: translate(100%)
 
 .btn
-	z-index: 10
+	z-index: 9
 	cursor: pointer
 	border: 3px solid #939292
 	color: #939292
