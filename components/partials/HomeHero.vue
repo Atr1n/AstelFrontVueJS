@@ -9,10 +9,13 @@
 				<img class="hero_main_img" :src="$page()['image'+`${n}`]">
 				<div class="hero_main_wrap">
 					<h1 class="hero_main_title">{{ $page()['title'+`${n}`] }}</h1>
-					<div class="hero_main_text" v-if="n === 3">
+					<!-- <div class="hero_main_text" v-if="n === 3">
 						<p>{{ $page()['description'+`${n}`] }}</p>
 					</div>
 					<div class="hero_main_text" v-else>
+						<p>{{ $page()['description'+`${n}`] }}</p>
+					</div> -->
+					<div class="hero_main_text">
 						<p>{{ $page()['description'+`${n}`] }}</p>
 					</div>
 					<component
@@ -25,7 +28,7 @@
 				</div>
 			</div>
 			<template slot="next">
-				<span class="btn btn-next"> &#10095;</span>
+				<span class="btn btn-next">&#10095;</span>
 			</template>
 		</carousel>
 	</div>
@@ -36,7 +39,6 @@
 <script>
 import {gsap} from "gsap";
 
-
 export default {
 	props: ['timeline'],
 	mounted() {
@@ -45,26 +47,20 @@ export default {
 	data() {
 		return {
 			responsive: {
-				0: {items: 1, nav: false, autoplay: true},
-				600: {items: 1, nav: false, autoplay: true},
-				900: {items: 1, nav: false, autoplay: true}
+				0: {
+					items: 1, 
+					nav: false, 
+					loop: true,
+					interval: false,
+					// autoplay: true,
+					autoplayHoverPause: true, 
+					// autoplaySpeed: 2500, 
+					// autoplayTimeout: 2000
+				}
 			}
 		}
 	},
 	methods: {
-
-		// counter(event) {
-		//
-		// 	let element = event.target; // DOM element, in this example .owl-carousel
-		// 	let items = event.item.count; // Number of items
-		// 	let item = event.item.index + 1; // Position of the current item
-		//
-		// 	// it loop is true then reset counter from 1
-		// 	if (item > items) {
-		// 		item = item - items
-		// 	}
-		// 	$(element).parent().find('.counter').html("item " + item + " of " + items)
-		// },
 		getMime(url) {
 			let chunks = url.split('.')
 			return `video/${chunks[chunks.length - 1]}`
@@ -73,11 +69,8 @@ export default {
 			return !url.startsWith('http')
 		},
 		animateOnLoad() {
-			// let tl = this.timeline;
-			//let tl = gsap.timeline();
 			let tl = gsap;
 			let header = document.querySelector(".layout-content");
-			//let item = header.querySelectorAll("[data-on-scroll-paginate]");
 			let item = document.querySelectorAll(".animate-home-hero");
 			tl.fromTo(
 				item,
@@ -148,7 +141,6 @@ export default {
 .slide-next-leave-to
 	transform: translate(-100%)
 
-
 /* GO TO PREVIOUS SLIDE */
 .slide-prev-enter-active,
 .slide-prev-leave-active
@@ -183,10 +175,8 @@ export default {
 	left: auto
 	right: 1%
 
-
 .btn:hover
 	transform: scale(1.1)
-
 
 .home-hero
 	position: relative
