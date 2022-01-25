@@ -215,6 +215,8 @@ export default {
 .services-items-item.animate-home-services:nth-child(4n),
 .services-items-item.animate-inner-services:nth-child(4n)
 	margin-right: 0
+	@media (max-width: 1280px)
+		margin-right: 1.8em
 	@media (max-width: 456px)
 		margin-right: 0
 .services-items-item.animate-inner-services
@@ -230,6 +232,7 @@ export default {
 	background: #01286b
 .services-items-item h4
 	display: block
+	max-width: 75%
 	font-size: 16px
 	color: #fff
 	min-height: auto

@@ -49,6 +49,10 @@ export default {
 <style lang="sass">
 .home-services
 	padding: 110px 0
+.home-page-title
+	margin-bottom: 2.5rem
+	@media (max-width: 556px)
+		margin-bottom: 1rem
 @media (min-width: 320px)
 	.home-services
 		padding: 30px 0

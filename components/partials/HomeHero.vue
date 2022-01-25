@@ -102,14 +102,14 @@ export default {
 	position: absolute
 	top: 10rem
 	left: 13rem
-	@media (max-width: 450px)
+	@media (max-width: 556px)
 		top: 5rem
 		left: 1rem
 		height: 50vh
 		object-fit: cover
 
 .hero_main_img
-	@media (max-width: 450px)
+	@media (max-width: 556px)
 		height: 50vh
 		object-fit: cover 
 
@@ -117,7 +117,7 @@ export default {
 	width: 450px
 	margin-bottom: 1rem
 	color:#bf0d0d
-	@media (max-width: 450px)
+	@media (max-width: 556px)
 		width: 320px 
 		margin-bottom: 0
 		font-size: 20px
@@ -127,12 +127,12 @@ export default {
 		width: 420px
 		font-family: Calibri,serif
 		font-size: 21px
-		@media (max-width: 450px)
-			width: 100%
+		@media (max-width: 556px)
+			width: 80%
 			font-size: 16px
 
 .hero_main_btn 
-	@media (max-width: 450px)	
+	@media (max-width: 556px)	
 		margin: 0
 		margin-top: 2rem
 		line-height: 30px
@@ -161,21 +161,22 @@ export default {
 	transform: translate(100%)
 
 .btn
-	z-index: 9
-	cursor: pointer
-	border: 3px solid #939292
-	color: #939292
-	display: flex
-	justify-content: center
-	align-items: center
-	width: 70px
-	height: 70px
 	position: absolute
 	top: calc(50% - 35px)
 	left: 1%
+	width: 70px
+	height: 70px
+	display: flex
+	justify-content: center
+	align-items: center
+	border: 3px solid #acadbf
+	border-radius: 50%
+	color: #acadbf
+	z-index: 9
+	cursor: pointer
 	transition: transform 0.3s ease-in-out
 	user-select: none
-	@media (max-width: 450px)
+	@media (max-width: 556px)
 		display: none
 
 .btn-next
