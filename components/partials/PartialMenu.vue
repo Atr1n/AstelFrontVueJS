@@ -48,7 +48,7 @@
 									<nuxt-link :to="$url(item.slug)+$url(item2.slug)" class="menu-dropdown-link">{{ item2.name }}</nuxt-link>
 									<nuxt-link :to="$url(item.slug)+$url(child2.slug)" class="menu-dropdown-link" v-for="(child2, index2) in item2.childServices" :key="index2">
 										{{ child2.name }}
-										<nuxt-link :to="$url(item.slug)+$url(child2.slug)" class="menu-dropdown-link-last" v-for="(grand,index3) in item2.grandChildService" :key="index3" v-if="grand.parent_id === child2.id">{{ grand['name']['ru'] }}</nuxt-link>
+										<nuxt-link :to="$url(item.slug)+$url(child2.slug)" class="menu-dropdown-link menu-dropdown__last" v-for="(grand,index3) in item2.grandChildService" :key="index3" v-if="grand.parent_id === child2.id">{{ grand['name']['ru'] }}</nuxt-link>
 									</nuxt-link>
 								</div>
 							</div>
@@ -197,6 +197,8 @@ export default {
 			margin-left: 10px
 	&-dropdown
 		padding: 10px 15px 0
+		&__last
+			margin-left: 1rem
 		&-link
 			display: block
 			font-size: 14px
