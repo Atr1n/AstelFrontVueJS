@@ -1,16 +1,13 @@
 <template>
 	
 	<div class="start-hero">
-		<div v-show="notificationIsShow" class="preloader notification">{{ addToBasket }}</div>
+		<div v-show="notificationIsShow" class="preloader notification"></div>
 		<carousel :responsive="responsive">
-			<template slot="prev">
-				<span class="btn btn-prev"> &#10094;</span>
-			</template>
 			<div v-for="n of 5" :key="n" v-if="$page()['image'+`${n}`]">
 				<img class="hero_main_img" :src="$page()['image'+`${n}`]">
 				<div class="hero_main_wrap">
 					<h1 class="hero_main_title">{{ $page()['title'+`${n}`] }}</h1>
-					<!-- <h1 class="hero_main_subtitle">{{ $page()['subtitle'+`${n}`] }}</h1> -->
+					<!-- <h2 class="hero_main_subtitle">{{ $page()['subtitle'+`${n}`] }}</h2> -->
 					<div class="hero_main_text">
 						<p>{{ $page()['description'+`${n}`] }}</p>
 					</div>
@@ -23,9 +20,6 @@
 					</component>
 				</div>
 			</div>
-			<template slot="next">
-				<span class="btn btn-next">&#10095;</span>
-			</template>
 		</carousel>
 	</div>
 
@@ -47,13 +41,15 @@ export default {
 			responsive: {
 				0: {
 					items: 1,
-					nav: false, 
+					nav: true,
+					navText: ["&#10094;", "&#10095;"],
 					loop: true,
 					interval: false,
-					// autoplay: true,
+					autoplay: true,
 					autoplayHoverPause: true, 
 					autoplaySpeed: 2500, 
-					autoplayTimeout: 2000
+					autoplayTimeout: 3500,
+					smartSpeed: 1200
 				},
 			},
 			notificationIsShow: true,
@@ -63,9 +59,8 @@ export default {
 		hideNotification () {
         setTimeout(() => {
 			this.notificationIsShow = false
-			}, 3000);
+			}, 2000);
 		},
-		
 		getMime(url) {
 			let chunks = url.split('.')
 			return `video/${chunks[chunks.length - 1]}`
@@ -96,35 +91,39 @@ export default {
 </script>
 
 <style lang="sass">
-// .owl-prev,
-// .owl-next 
-//     overflow: hidden
-//     text-indent: -99px
+.owl-theme .owl-nav [class*='owl-']
+	display: flex
+	justify-content: center
+	align-items: center
+	border-radius: 50%
+	border: 1px solid #2c2c2c
+	color: #2c2c2c
+	background: none
 
-// .owl-prev
-// 	width: 60px
-// 	height: 60px
-// 	border-top: 10px solid #6E18C0
-// 	border-right: 10px solid #6E18C0
-// 	margin-right: 60px
-// 	transform: rotate(-135deg)
-// 	background: none
-// 	&::hover
-// 		display: none
+.owl-prev,
+.owl-next
+	position: absolute
+	width: 70px
+	height: 70px
+	top: calc(50% - 35px)
+
+.owl-next
+	right: 2rem
+.owl-prev
+	left: 2rem
 
 .preloader 
 	position: absolute
 	width: 100%
+	height: calc(100vh - 116px)
 	top: 116px
 	left: 0
-	height: calc(100vh - 116px)
 	background: white
 	background-image: url(/icons/logo.svg)
 	background-repeat: no-repeat
-	z-index: 10
 	background-position: center
 	background-size: 30%
-
+	z-index: 1000
 
 .hero_main_wrap
 	position: absolute
