@@ -28,7 +28,7 @@ export default {
 		{ src: "@/plugins/page" },
 		{ src: "@/plugins/lang" },
 		{ src: "@/plugins/seo" },
-		{ src: "@/plugins/owlCarousel",mode: "client" }
+		{ src: "@/plugins/owlCarousel", mode: "client" }
 	],
 
 	router: {

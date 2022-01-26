@@ -1,6 +1,7 @@
 <template>
 	
 	<div class="start-hero">
+		<div v-show="notificationIsShow" class="preloader notification">{{ addToBasket }}</div>
 		<carousel :responsive="responsive">
 			<template slot="prev">
 				<span class="btn btn-prev"> &#10094;</span>
@@ -9,12 +10,7 @@
 				<img class="hero_main_img" :src="$page()['image'+`${n}`]">
 				<div class="hero_main_wrap">
 					<h1 class="hero_main_title">{{ $page()['title'+`${n}`] }}</h1>
-					<!-- <div class="hero_main_text" v-if="n === 3">
-						<p>{{ $page()['description'+`${n}`] }}</p>
-					</div>
-					<div class="hero_main_text" v-else>
-						<p>{{ $page()['description'+`${n}`] }}</p>
-					</div> -->
+					<!-- <h1 class="hero_main_subtitle">{{ $page()['subtitle'+`${n}`] }}</h1> -->
 					<div class="hero_main_text">
 						<p>{{ $page()['description'+`${n}`] }}</p>
 					</div>
@@ -40,27 +36,36 @@
 import {gsap} from "gsap";
 
 export default {
+	
 	props: ['timeline'],
 	mounted() {
 		this.animateOnLoad();
+		this.hideNotification();
 	},
 	data() {
 		return {
 			responsive: {
 				0: {
-					items: 1, 
+					items: 1,
 					nav: false, 
 					loop: true,
 					interval: false,
 					// autoplay: true,
 					autoplayHoverPause: true, 
-					// autoplaySpeed: 2500, 
-					// autoplayTimeout: 2000
-				}
-			}
+					autoplaySpeed: 2500, 
+					autoplayTimeout: 2000
+				},
+			},
+			notificationIsShow: true,
 		}
 	},
 	methods: {
+		hideNotification () {
+        setTimeout(() => {
+			this.notificationIsShow = false
+			}, 3000);
+		},
+		
 		getMime(url) {
 			let chunks = url.split('.')
 			return `video/${chunks[chunks.length - 1]}`
@@ -91,6 +96,36 @@ export default {
 </script>
 
 <style lang="sass">
+// .owl-prev,
+// .owl-next 
+//     overflow: hidden
+//     text-indent: -99px
+
+// .owl-prev
+// 	width: 60px
+// 	height: 60px
+// 	border-top: 10px solid #6E18C0
+// 	border-right: 10px solid #6E18C0
+// 	margin-right: 60px
+// 	transform: rotate(-135deg)
+// 	background: none
+// 	&::hover
+// 		display: none
+
+.preloader 
+	position: absolute
+	width: 100%
+	top: 116px
+	left: 0
+	height: calc(100vh - 116px)
+	background: white
+	background-image: url(/icons/logo.svg)
+	background-repeat: no-repeat
+	z-index: 10
+	background-position: center
+	background-size: 30%
+
+
 .hero_main_wrap
 	position: absolute
 	top: 10rem
@@ -110,6 +145,15 @@ export default {
 	width: 450px
 	margin-bottom: 1rem
 	color:#bf0d0d
+	@media (max-width: 556px)
+		width: 320px 
+		margin-bottom: 0
+		font-size: 20px
+
+.hero_main_subtitle
+	width: 450px
+	margin-bottom: 1rem
+	color: #fff
 	@media (max-width: 556px)
 		width: 320px 
 		margin-bottom: 0
