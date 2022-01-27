@@ -64,9 +64,10 @@ export default {
 	},
 	methods: {
 		getSrcServiceImage (item) {
-			this.fullUrlImg =  this.urlForImg.concat(item)
+			let fullUrlImg;
+			fullUrlImg = this.urlForImg.concat(item)
 			if (item === null) return ""
-			return this.fullUrlImg;
+			return fullUrlImg;
 		},
 		getMime(url) {
 			let chunks = url.split('.')

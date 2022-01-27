@@ -33,7 +33,6 @@ export default {
 	
 	props: ['timeline'],
 	mounted() {
-		this.animateOnLoad();
 		this.hideNotification();
 	},
 	data() {
@@ -92,13 +91,13 @@ export default {
 
 <style lang="sass">
 .owl-theme .owl-nav [class*='owl-']
-	display: flex
-	justify-content: center
-	align-items: center
-	border-radius: 50%
-	border: 1px solid #2c2c2c
-	color: #2c2c2c
-	background: none
+	display: flex!important
+	justify-content: center!important
+	align-items: center!important
+	border-radius: 50%!important
+	border: 1px solid #2c2c2c!important
+	color: #2c2c2c!important
+	background: none!important
 
 .owl-prev,
 .owl-next
