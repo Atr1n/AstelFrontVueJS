@@ -61,6 +61,7 @@ export default {
 	padding: 40px 50px
 	.page-text
 		max-width: 1000px
+		margin-bottom: 3rem
 	&-title
 		font-size: 36px
 		font-weight: 500

@@ -84,7 +84,7 @@ export default {
 	// Axios module configuration: https://go.nuxtjs.dev/config-axios
 	axios: {
 		baseURL: `${
-			process.env.NODE_ENV == "development2"
+			process.env.NODE_ENV == "production"
 				// ? "http://localhost:8001/api"
 				// : "http://localhost:8001/api"
 				? "https://demo-admin.astel.kz/api"

@@ -1,7 +1,7 @@
 <template>
 	
 	<div class="start-hero">
-		<div v-show="notificationIsShow" class="preloader notification"></div>
+		<!-- <div v-show="notificationIsShow" class="preloader notification"></div> -->
 		<carousel :responsive="responsive">
 			<div v-for="n of 5" :key="n" v-if="$page()['image'+`${n}`]">
 				<img class="hero_main_img" :src="$page()['image'+`${n}`]">
@@ -49,7 +49,8 @@ export default {
 					autoplayHoverPause: true, 
 					autoplaySpeed: 2500, 
 					autoplayTimeout: 3500,
-					smartSpeed: 1200
+					smartSpeed: 1200,
+					lazyLoad: true,
 				},
 			},
 			notificationIsShow: true,
@@ -92,13 +93,15 @@ export default {
 
 <style lang="sass">
 .owl-theme .owl-nav [class*='owl-']
-	display: flex
-	justify-content: center
-	align-items: center
-	border-radius: 50%
-	border: 1px solid #2c2c2c
-	color: #2c2c2c
-	background: none
+	display: flex!important
+	justify-content: center!important
+	align-items: center!important
+	border-radius: 50%!important
+	border: 1px solid #2c2c2c!important
+	color: #2c2c2c!important
+	background: none!important
+	@media (max-width: 556px)
+		display: none!important
 
 .owl-prev,
 .owl-next
@@ -173,53 +176,6 @@ export default {
 		margin-top: 2rem
 		line-height: 30px
 
-/* GO TO NEXT SLIDE */
-.slide-next-enter-active,
-.slide-next-leave-active
-	transition: transform 0.5s ease-in-out
-
-.slide-next-enter
-	transform: translate(100%)
-
-.slide-next-leave-to
-	transform: translate(-100%)
-
-/* GO TO PREVIOUS SLIDE */
-.slide-prev-enter-active,
-.slide-prev-leave-active
-	transition: transform 0.5s ease-in-out
-
-.slide-prev-enter
-	transform: translate(-100%)
-
-.slide-prev-leave-to
-	transform: translate(100%)
-
-.btn
-	position: absolute
-	top: calc(50% - 35px)
-	left: 1%
-	width: 70px
-	height: 70px
-	display: flex
-	justify-content: center
-	align-items: center
-	border: 3px solid #acadbf
-	border-radius: 50%
-	color: #acadbf
-	z-index: 9
-	cursor: pointer
-	transition: transform 0.3s ease-in-out
-	user-select: none
-	@media (max-width: 556px)
-		display: none
-
-.btn-next
-	left: auto
-	right: 1%
-
-.btn:hover
-	transform: scale(1.1)
 
 .home-hero
 	position: relative

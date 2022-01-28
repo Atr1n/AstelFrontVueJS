@@ -3,7 +3,7 @@
 		<div class="services-items-item animate-home-services" data-on-scroll-paginate
 			v-for="(item, index) in services" :key="index">
 			<div class="services-item-wrap">
-				<h4 style="margin: 0px 50px 10px 30px;/*position: absolute;*/ color: white;font-size:16px;" class="services-items-title">{{ item.name }}</h4>
+				<h4 class="services-items-title">{{ item.name }}</h4>
 				<component style="z-index: 999;position: relative;"
 						:is="isSameHost($pageUrl('services', item.slug)) ? 'nuxt-link' : 'a'"
 						:href="isSameHost($pageUrl('services', item.slug)) ? $url($pageUrl('services', item.slug)) : $pageUrl('services', item.slug)"
@@ -64,9 +64,10 @@ export default {
 	},
 	methods: {
 		getSrcServiceImage (item) {
-			this.fullUrlImg =  this.urlForImg.concat(item)
+			let fullUrlImg;
+			fullUrlImg =  this.urlForImg.concat(item)
 			if (item === null) return ""
-			return this.fullUrlImg;
+			return fullUrlImg;
 		},
 		getMime(url) {
 			let chunks = url.split('.')
@@ -122,12 +123,6 @@ export default {
 				opacity: 0
 			.services-items-icon-arrow
 				opacity: 1
-	&-title
-		font-size: 18px
-		font-weight: 400
-		color: #333333
-		margin-bottom: 5px
-		transition: color .4s ease
 	&-go-to
 		display: flex
 		align-items: center
@@ -171,8 +166,6 @@ export default {
 		&-item
 			max-width: 100%
 			margin-right: 0
-		&-title
-			font-size: 16px
 @media (min-width: 700px)
 	.services-items
 		&-item
@@ -188,11 +181,11 @@ export default {
 		&-title
 			min-height: 50px
 .services-items-item.animate-home-services
-	width: 16em;
-	padding: 25px 25px;
-	color: #fff;
-	height: 21em;
-	margin: 0em 1.8em 1.8em 0;
+	width: 16em
+	padding: 25px 25px
+	color: #fff
+	height: 21em
+	margin: 0em 1.8em 1.8em 0
 	border-radius: 20px
 	position: relative
 	box-shadow: 5px 5px 5px #8e8a8a
@@ -230,15 +223,21 @@ export default {
 	box-shadow: 5px 5px 5px #8e8a8a
 	background-size: 100%
 	background: #01286b
-.services-items-item h4
-	display: block
-	max-width: 75%
-	font-size: 16px
-	color: #fff
-	min-height: auto
-	line-height: 1.5
+
+.services-items-title
 	position: relative
-	margin: 0 0 1em !important;
+	max-width: 75%
+	min-height: auto
+	display: block
+	margin: 0 0 1em
+	font-size: 16px
+	line-height: 1.5
+	color: #fff
+	font-weight: 400
+	transition: color .4s ease
+
+.services-items-item.animate-home-services:last-child h4
+	max-width: 100%
 
 .services-items-item a
 	display: block
