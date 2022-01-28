@@ -33,7 +33,6 @@ export default {
 	
 	props: ['timeline'],
 	mounted() {
-		this.animateOnLoad();
 		this.hideNotification();
 	},
 	data() {
