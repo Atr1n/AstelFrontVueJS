@@ -255,70 +255,72 @@ export default {
 		border-top: 3px solid $color-blue
 		border-bottom: 3px solid $color-red
 		box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1)
-		visibility: hidden
-		opacity: 0
+		// visibility: hidden
+		// opacity: 0
 		transition: all .3s ease
 		&__item-wrap
 			width: 300px
 			@media (max-width: 1280px)
 				width: 270px
-			&:nth-child(6)
-				position: relative
-				left: 21.5rem
-				margin-top: -12rem
-				@media (max-width: 1750px)
-					left: 19.7rem
-				@media (max-width: 1536px)
-					left: 18.7rem
-				@media (max-width: 1280px)
-					left: 0
-			&:nth-child(5)
-				position: relative
-				top: 11.7rem
-				right: 22rem
-				@media (max-width: 1750px)
-					top: 10.2rem
-				@media (max-width: 1536px)
-					right: 22.8rem
-				@media (max-width: 1280px)
-					top: -12.3rem
-					right: -48.5rem
+			
 			&:nth-child(4)
 				@media (max-width: 1750px)
 					position: relative
-					right: 2rem
+					right: 1rem
+			&:nth-child(5)
+				position: relative
+				top: 16.5rem
+				right: 22rem
+				@media (max-width: 1750px)
+					top: 16.2rem
+					right: 21rem
 				@media (max-width: 1536px)
-					position: relative
-					right: 4rem
-			&:nth-child(7)
+					top: 16rem
+					right: 19.8rem
+				@media (max-width: 1280px)
+					top: -16.4rem
+					right: -51rem
+			&:nth-child(6)
 				position: relative
 				left: 21.5rem
-				margin-top: -12rem
+				margin-top: -11rem
 				@media (max-width: 1750px)
 					left: 19.7rem
 				@media (max-width: 1536px)
 					left: 18.7rem
+					margin-top: -16.4rem
+				@media (max-width: 1280px)
+					left: 0
+			&:nth-child(7)
+				position: relative
+				left: 21.5rem
+				margin-top: -11rem
+				@media (max-width: 1750px)
+					left: 19.7rem
+				@media (max-width: 1536px)
+					left: 18.7rem
+					margin-top: -16.4rem
 				@media (max-width: 1280px)
 					position: static
 			&:nth-child(8)
 				position: relative
-				top: -12rem
-				left: 40.5rem
+				top: -16rem
+				left: 42.5rem
 				margin-top: -12rem
 				@media (max-width: 1750px)
-					top: -10.9rem
+					top: -15.5rem
 					left: 39rem
 				@media (max-width: 1536px)
-					left: 30rem
+					top: -20.5rem
+					left: 33rem
 				@media (max-width: 1280px)
 					margin-top: 0
 					top: 0
 					left: -52rem
 
-
 		@media (max-width: 1747px)
 			width: 1650px
-			left: -23rem
+			left: -22rem
 		@media (max-width: 1547px)
 			width: 1450px
 			left: -22.5rem
@@ -328,32 +330,25 @@ export default {
 			
 		&-title
 			padding-bottom: 8px
-			font-size: 12px
-			white-space: nowrap
+			font-size: 16px
 			color: #868686
 			text-transform: uppercase
 			opacity: .6
-			@media (max-width: 1747px)
-				font-size: 10px
-			@media (max-width: 1280px)
-				font-size: 8px
 			&:last-child
 				margin-bottom: 0
 		&-link
 			display: grid
 			padding-top: 7px
-			font-size: 12px
+			font-size: 14px
 			color: $color-black
 			font-weight: 500
 			text-decoration: underline black
 			text-transform: initial
 			@media (max-width: 1747px)
-				font-size: 10px
+				font-size: 13px
 			@media (max-width: 1547px)
 				width: 200px
-				font-size: 9px
-			@media (max-width: 1280px)
-				font-size: 8px
+				font-size: 12px
 			&:last-child
 				margin-bottom: 0
 			&:hover
@@ -362,11 +357,10 @@ export default {
 			display: list-item
 			margin-left: 1rem
 			ist-style-type: revert
-			font-size: 10px
-			@media (max-width: 1747px)
-				font-size: 9px
-			@media (max-width: 1280px)
-				font-size: 8px
+			font-size: 12px
+			@media (max-width: 1547px)
+				font-size: 11px
+			
 	&-socials
 		margin-left: auto
 		display: flex

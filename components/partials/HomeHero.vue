@@ -91,6 +91,9 @@ export default {
 </script>
 
 <style lang="sass">
+.owl-item.active
+	background: #fff!important
+
 .owl-theme .owl-nav [class*='owl-']
 	display: flex!important
 	justify-content: center!important

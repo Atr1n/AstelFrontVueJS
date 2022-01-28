@@ -57,9 +57,9 @@ export default function ({ app, store, req, route }, inject) {
         let domain
 
         if (process.client) {
-            domain = req.headers.host
+            domain = window.location.host
         } else {
-            domain = req?.headers?.host
+            domain = req.headers.host
         }
 
         return 'http' + (process.env.NODE_ENV == 'production' ? 's': '') + `://${domain}`
