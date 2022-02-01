@@ -56,7 +56,7 @@ export default function ({ app, store, req, route }, inject) {
     inject('host', () => {
         let domain
 
-        // SERVER NPM RUN BUILD, NPM RUN START
+        // // SERVER NPM RUN BUILD, NPM RUN START
 
         if (process.client) {
             domain = window.location.host
@@ -64,7 +64,7 @@ export default function ({ app, store, req, route }, inject) {
             domain = req.headers.host
         }
 
-        // LOCAL NPM RUN DEV
+        // // LOCAL NPM RUN DEV
         
         // if (process.client) {
         //     domain = req.headers.host

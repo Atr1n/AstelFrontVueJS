@@ -1,6 +1,6 @@
 <template>
 	
-	<div v-if="!notificationIsShow" class="start-hero">
+	<div class="start-hero">
 		<carousel :responsive="responsive">
 			<div v-for="n of 5" :key="n" v-if="$page()['image'+`${n}`]">
 				<div v-if="small">
