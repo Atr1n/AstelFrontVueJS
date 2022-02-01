@@ -1,14 +1,15 @@
 <template>
 	
 	<div class="start-hero">
+		<div v-show="notificationIsShow" class="preloader notification"></div>
 		<carousel :responsive="responsive">
 			<div v-for="n of 5" :key="n" v-if="$page()['image'+`${n}`]">
 				<div v-if="small">
-					<img width="456" height="520" src="https://demo-admin.astel.kz/elfinder/connector?_token=&cmd=file&target=fls1_dGVzdC9tYl90ZXN0X2JnMi5qcGc">
+					<img width="456" height="520" :src="$page()['imageMobile'+`${n}`]">
 				</div>
 				<div v-else>
 					<img width="1366" height="100%" class="hero_main_img" :src="$page()['image'+`${n}`]">
-				</div>
+				</div>	
 				<div class="hero_main_wrap">
 					<h1 class="hero_main_title">{{ $page()['title'+`${n}`] }}</h1>
 					<!-- <h2 class="hero_main_subtitle">{{ $page()['subtitle'+`${n}`] }}</h2> -->
@@ -91,7 +92,7 @@ export default {
 		hideNotification () {
         setTimeout(() => {
 			this.notificationIsShow = false
-			}, 700);
+			}, 1000);
 		},
 
 		getMime(url) {
@@ -127,6 +128,7 @@ export default {
 
 <style lang="sass">
 .start-hero
+	position: relative
 	min-height: 50vh
 
 .owl-theme .owl-nav [class*='owl-']
@@ -154,16 +156,16 @@ export default {
 
 .preloader 
 	position: absolute
+	overflow-x: hidden
 	width: 100%
 	height: calc(100vh - 9rem)
-	top: 7rem
+	top: -1.6rem
 	left: 0
-	background: #F8F8F8
+	background: #fff
 	z-index: 1000
-	@media (max-width: 1750px)
-		height: calc(100vh - 5rem)
-	@media (max-width: 550px)
-		display: none
+	@media (max-width: 556px)
+		top: 0
+		height: 100vh
 
 .hero_main_wrap
 	position: absolute
