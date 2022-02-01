@@ -324,6 +324,9 @@ export default {
 		@media (max-width: 1547px)
 			width: 1450px
 			left: -22.5rem
+		@media (max-width: 1366px)
+			width: 1280px
+			left: -22rem
 		@media (max-width: 1280px)
 			width: 1180px
 			left: -22rem

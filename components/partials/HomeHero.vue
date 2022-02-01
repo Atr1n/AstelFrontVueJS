@@ -1,10 +1,14 @@
 <template>
 	
-	<div class="start-hero">
-		<!-- <div v-show="notificationIsShow" class="preloader notification"></div> -->
+	<div v-if="!notificationIsShow" class="start-hero">
 		<carousel :responsive="responsive">
 			<div v-for="n of 5" :key="n" v-if="$page()['image'+`${n}`]">
-				<img class="hero_main_img" :src="$page()['image'+`${n}`]">
+				<div v-if="small">
+					<img width="456" height="520" src="https://demo-admin.astel.kz/elfinder/connector?_token=&cmd=file&target=fls1_dGVzdC9tYl90ZXN0X2JnMi5qcGc">
+				</div>
+				<div v-else>
+					<img width="1366" height="100%" class="hero_main_img" :src="$page()['image'+`${n}`]">
+				</div>
 				<div class="hero_main_wrap">
 					<h1 class="hero_main_title">{{ $page()['title'+`${n}`] }}</h1>
 					<!-- <h2 class="hero_main_subtitle">{{ $page()['subtitle'+`${n}`] }}</h2> -->
@@ -30,44 +34,75 @@
 import {gsap} from "gsap";
 
 export default {
-	
 	props: ['timeline'],
+	created() {
+		if (process.browser){
+			window.addEventListener('resize', this.onResize);
+    		this.onResize();
+		}
+	},
+
+	destroyed() {
+   		window.removeEventListener('resize', this.onResize)
+  	},
+
 	mounted() {
 		this.hideNotification();
 	},
+
 	data() {
 		return {
 			responsive: {
-				0: {
+				568: {
 					items: 1,
 					nav: true,
 					navText: ["&#10094;", "&#10095;"],
 					loop: true,
 					interval: false,
 					autoplay: true,
-					autoplayHoverPause: true, 
+					autoplayHoverPause: true,
 					autoplaySpeed: 2500, 
-					autoplayTimeout: 3500,
+					autoplayTimeout: 2500,
 					smartSpeed: 1200,
+					lazyLoad: true,
+				},
+				0: {
+					items: 1,
+					nav: true,
+					navText: ["&#10094;", "&#10095;"],
+					loop: true,
+					interval: false,
+					autoplay: false,
+					autoplayHoverPause: false, 
+					smartSpeed: 500,
 					lazyLoad: true,
 				},
 			},
 			notificationIsShow: true,
+			small: false,
 		}
 	},
+	
 	methods: {
+		onResize() {
+        	this.small = window.innerWidth <= 600;
+    	},
+
 		hideNotification () {
         setTimeout(() => {
 			this.notificationIsShow = false
-			}, 2000);
+			}, 700);
 		},
+
 		getMime(url) {
 			let chunks = url.split('.')
 			return `video/${chunks[chunks.length - 1]}`
 		},
+
 		isSameHost(url) {
 			return !url.startsWith('http')
 		},
+
 		animateOnLoad() {
 			let tl = gsap;
 			let header = document.querySelector(".layout-content");
@@ -91,8 +126,8 @@ export default {
 </script>
 
 <style lang="sass">
-.owl-item.active
-	background: #fff!important
+.start-hero
+	min-height: 50vh
 
 .owl-theme .owl-nav [class*='owl-']
 	display: flex!important
@@ -120,22 +155,22 @@ export default {
 .preloader 
 	position: absolute
 	width: 100%
-	height: calc(100vh - 116px)
-	top: 116px
+	height: calc(100vh - 9rem)
+	top: 7rem
 	left: 0
-	background: white
-	background-image: url(/icons/logo.svg)
-	background-repeat: no-repeat
-	background-position: center
-	background-size: 30%
+	background: #F8F8F8
 	z-index: 1000
+	@media (max-width: 1750px)
+		height: calc(100vh - 5rem)
+	@media (max-width: 550px)
+		display: none
 
 .hero_main_wrap
 	position: absolute
 	top: 10rem
 	left: 13rem
 	@media (max-width: 556px)
-		top: 5rem
+		top: 3.3rem
 		left: 1rem
 		height: 50vh
 		object-fit: cover
@@ -151,7 +186,6 @@ export default {
 	color:#bf0d0d
 	@media (max-width: 556px)
 		width: 320px 
-		margin-bottom: 0
 		font-size: 20px
 
 .hero_main_subtitle
