@@ -1,7 +1,7 @@
 <template>
 	<header class="header">
 		<nuxt-link class="header-logo" :to="'/' + (locale === 'ru' ? '' : locale)">
-			<img data-src="/icons/logo.svg" alt="Astel logo" data-header-item v-lazy-load>
+			<img width="150" height="39" data-src="/icons/logo.svg" alt="Astel" data-header-item v-lazy-load>
 		</nuxt-link>
 		<div class="header-inner">
 			<div class="header-top">
@@ -262,7 +262,6 @@ export default {
 			width: 300px
 			@media (max-width: 1280px)
 				width: 270px
-			
 			&:nth-child(4)
 				@media (max-width: 1750px)
 					position: relative
@@ -270,7 +269,7 @@ export default {
 			&:nth-child(5)
 				position: relative
 				top: 16.5rem
-				right: 22rem
+				right: 21.6rem
 				@media (max-width: 1750px)
 					top: 16.2rem
 					right: 21rem

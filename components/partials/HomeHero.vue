@@ -62,8 +62,8 @@ export default {
 					interval: false,
 					autoplay: true,
 					autoplayHoverPause: true,
-					autoplaySpeed: 2500, 
-					autoplayTimeout: 2500,
+					autoplaySpeed: 3200, 
+					autoplayTimeout: 3200,
 					smartSpeed: 1200,
 					lazyLoad: true,
 				},
@@ -158,7 +158,7 @@ export default {
 	position: absolute
 	overflow-x: hidden
 	width: 100%
-	height: calc(100vh - 9rem)
+	height: calc(150vh - 9rem)
 	top: -1.6rem
 	left: 0
 	background: #fff
@@ -202,7 +202,6 @@ export default {
 .hero_main_text
 	p 
 		width: 420px
-		font-family: Calibri,serif
 		font-size: 21px
 		@media (max-width: 556px)
 			width: 80%
