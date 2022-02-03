@@ -58,19 +58,19 @@ export default function ({ app, store, req, route }, inject) {
 
         // // SERVER NPM RUN BUILD, NPM RUN START
 
-        // if (process.client) {
-        //     domain = window.location.host
-        // } else {
-        //     domain = req.headers.host
-        // }
+        if (process.client) {
+            domain = window.location.host
+        } else {
+            domain = req.headers.host
+        }
 
         // LOCAL NPM RUN DEV
         
-        if (process.client) {
-            domain = req.headers.host
-        } else {
-            domain = req?.headers?.host
-        }
+        // if (process.client) {
+        //     domain = req.headers.host
+        // } else {
+        //     domain = req?.headers?.host
+        // }
 
         return 'http' + (process.env.NODE_ENV == 'production' ? 's': '') + `://${domain}`
     })

@@ -10,7 +10,7 @@
 						:to="$url($pageUrl('services', item.slug))" class="buttonMain --transparent animate-home-hero buttonMain-hover"
 						data-on-scroll-paginate
 						v-if="item.serviceImages !== null" >
-					{{ 'Подробнее' }}
+						{{ $trans('Подробнее') }}
 					<!-- <svg width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l3.5 3.5L8 1" stroke="#fff" stroke-linecap="round"></path></svg> -->
 				</component>
 				<img class="service__item-img" :src="getSrcServiceImage(item.serviceImages)" alt="item.serviceImages">

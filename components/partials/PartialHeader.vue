@@ -32,11 +32,14 @@
 						</div>
 					</div>
 					<nuxt-link :to="$url(item.slug)" :key="index"
-							   data-header-item class="header-nav-link"
-							   v-else-if="index === 1"
-					>{{ item.name }}
-						<div class="header-serviceDrop">
-							<div class="header-serviceContent">
+							data-header-item class="header-nav-link"
+							v-else-if="index === 1"
+						>{{ item.name }}
+						<div class="header-serviceDrop .--menuOpen">
+
+							<!-- Сам event -->
+							
+							<div @click="closeMenu" class="header-serviceContent">
 								<div v-for="(item2,index2) in menuServiceItems" class="header-serviceDrop__item-wrap">
 									<div class="header-nav-link" :key="index2" data-header-item v-if="item2.childServices.length">
 										<nuxt-link :to="$url(item.slug)+$url(item2.slug)" class="header-serviceDrop-title">{{ item2.name }}</nuxt-link>
@@ -51,7 +54,6 @@
 					</nuxt-link>
 					<nuxt-link :to="$url(item.slug)" :key="index" data-header-item class="header-nav-link" v-else>{{ item.name }}</nuxt-link>
 				</template>
-
 
 				<div data-header-item class="header-search-wrp" :class="{'--active': searchActive}">
 					<button class="header-search-btn" @click="searchActive = !searchActive"><search /></button>
@@ -101,7 +103,6 @@ export default {
 		'$route.fullPath': function() {
 			this.searchActive = false
 			this.q = null
-
 		}
 	},
 	mounted() {
@@ -145,6 +146,12 @@ export default {
 		openMenu() {
 			document.body.classList.add("--hidden");
 			this.$setTrue("modals.menu");
+		},
+
+		// Добавляет класс &.--menuClose pointer-events: none
+		// После чего функция уходит в class="header-serviceContent" '@click="closeMenu"'
+		closeMenu() {
+			document.body.classList.add("--menuClose");
 		},
 	},
 };
