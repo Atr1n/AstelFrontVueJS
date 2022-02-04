@@ -16,8 +16,6 @@
 						<a class="header-dropdown-link header-dropdown-link__social" :href="getLocaleUrl('kk')" v-if="locale != 'kk'">{{ locales.kk }}</a>
 					</div>
 				</div>
-				<!-- <nuxt-link data-header-item class="header-link" :to="$pageUrl('vacancies')" v-if="$page('vacancies')">{{ $page('vacancies').name }}</nuxt-link> -->
-				<!-- <nuxt-link data-header-item class="header-link --blue --underline" to="/sign-in">Вход для клиентов</nuxt-link> -->
 				<client-only>
 					<socials class="header-socials" data-header-item></socials>
 				</client-only>
@@ -38,14 +36,23 @@
 						<div class="header-serviceDrop .--menuOpen">
 
 							<!-- Сам event -->
-							
-							<div @click="closeMenu" class="header-serviceContent">
+				
+							<div class="header-serviceContent">
 								<div v-for="(item2,index2) in menuServiceItems" class="header-serviceDrop__item-wrap">
-									<div class="header-nav-link" :key="index2" data-header-item v-if="item2.childServices.length">
-										<nuxt-link :to="$url(item.slug)+$url(item2.slug)" class="header-serviceDrop-title">{{ item2.name }}</nuxt-link>
+									<div 
+										@click="closeDesctopMenu"
+										class="header-nav-link" 
+										:key="index2" 
+										data-header-item 
+										v-if="item2.childServices.length">
+										<nuxt-link 
+											:to="$url(item.slug)+$url(item2.slug)" 
+											class="header-serviceDrop-title">
+											{{ item2.name }}
+										</nuxt-link>
 										<nuxt-link :to="$url(item.slug)+$url(child2.slug)" class="header-serviceDrop-link" v-for="(child2, index2) in item2.childServices" :key="index2">
 											{{ child2.name }}
-											<nuxt-link :to="$url(item.slug)+$url(child2.slug)" class="header-serviceDrop-link header-serviceDrop-underLink" v-for="(grand,index3) in item2.grandChildService" :key="index3" v-if="grand.parent_id === child2.id">{{ grand['name']['ru'] }}</nuxt-link>
+											<nuxt-link :to="$url(item.slug)+'/' +(child2.slug)" class="header-serviceDrop-link header-serviceDrop-underLink" v-for="(grand,index3) in item2.grandChildService" :key="index3" v-if="grand.parent_id === child2.id">{{ grand['name']['ru'] }}</nuxt-link>
 										</nuxt-link>
 									</div>
 								</div>
@@ -150,8 +157,11 @@ export default {
 
 		// Добавляет класс &.--menuClose pointer-events: none
 		// После чего функция уходит в class="header-serviceContent" '@click="closeMenu"'
-		closeMenu() {
+		closeDesctopMenu() {
 			document.body.classList.add("--menuClose");
+			setTimeout(function(){
+				document.body.classList.remove("--menuClose");
+			}, 1000);
 		},
 	},
 };

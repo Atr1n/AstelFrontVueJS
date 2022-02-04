@@ -1,15 +1,39 @@
 <template>
-	
+
 	<div class="start-hero">
 		<div v-show="notificationIsShow" class="preloader notification"></div>
+
 		<carousel :responsive="responsive">
-			<div v-for="n of 5" :key="n" v-if="$page()['image'+`${n}`]">
+			<div v-for="n of 5" :key="n" v-if="$page()['image'+`${n}`] && locales[locale] === 'Ru'">
 				<div v-if="small">
 					<img width="456" height="520" :src="$page()['imageMobile'+`${n}`]">
 				</div>
 				<div v-else>
 					<img width="1366" height="100%" class="hero_main_img" :src="$page()['image'+`${n}`]">
-				</div>	
+				</div>
+				<div class="hero_main_wrap">
+					<h1 class="hero_main_title">{{ $page()['title'+`${n}`] }}</h1>
+					<!-- <h2 class="hero_main_subtitle">{{ $page()['subtitle'+`${n}`] }}</h2> -->
+					<div class="hero_main_text">
+						<p>{{ $page()['description'+`${n}`] }}</p>
+					</div>
+					<component
+						:is="isSameHost($page()['link'+`${n}`]) ? 'nuxt-link' : 'a'"
+						:href="isSameHost($page()['link'+`${n}`]) ? $url($page()['link'+`${n}`]) : $page()['link'+`${n}`]"
+						:to="$url($page()['link'+`${n}`])" class="hero_main_btn buttonHome --blue animate-home-hero buttonHome-hover"
+						data-on-scroll-paginate
+						v-if="$page()['link'+`${n}`]">{{ $trans('Подробнее') }}
+					</component>
+				</div>
+			</div>
+
+			<div v-for="n of 5" :key="n" v-if="$page()['image'+`${n}`] != null && $page()['image'+`${n}`][0] != 'h' && locales[locale] !== 'Ru'">
+				<div v-if="small">
+					<img width="456" height="520" :src="$page()['imageMobile'+`${n}`]">
+				</div>
+				<div v-else>
+					<img width="1366" height="100%" class="hero_main_img" :src="$page()['image'+`${n}`]">
+				</div>
 				<div class="hero_main_wrap">
 					<h1 class="hero_main_title">{{ $page()['title'+`${n}`] }}</h1>
 					<!-- <h2 class="hero_main_subtitle">{{ $page()['subtitle'+`${n}`] }}</h2> -->
@@ -33,9 +57,16 @@
 
 <script>
 import {gsap} from "gsap";
+import {mapGetters} from "vuex";
 
 export default {
 	props: ['timeline'],
+	computed: {
+		...mapGetters({
+			locale: 'translation/GET_LOCALE',
+			locales: 'translation/GET_LOCALES'
+		}),
+	},
 	created() {
 		if (process.browser){
 			window.addEventListener('resize', this.onResize);
@@ -62,7 +93,7 @@ export default {
 					interval: false,
 					autoplay: true,
 					autoplayHoverPause: true,
-					autoplaySpeed: 3200, 
+					autoplaySpeed: 3200,
 					autoplayTimeout: 3200,
 					smartSpeed: 1200,
 					lazyLoad: true,
@@ -74,7 +105,7 @@ export default {
 					loop: true,
 					interval: false,
 					autoplay: false,
-					autoplayHoverPause: false, 
+					autoplayHoverPause: false,
 					smartSpeed: 500,
 					lazyLoad: true,
 				},
@@ -83,7 +114,7 @@ export default {
 			small: false,
 		}
 	},
-	
+
 	methods: {
 		onResize() {
         	this.small = window.innerWidth <= 600;
@@ -154,7 +185,7 @@ export default {
 .owl-prev
 	left: 2rem
 
-.preloader 
+.preloader
 	position: absolute
 	overflow-x: hidden
 	width: 100%
@@ -180,14 +211,14 @@ export default {
 .hero_main_img
 	@media (max-width: 556px)
 		height: 50vh
-		object-fit: cover 
+		object-fit: cover
 
 .hero_main_title
 	width: 450px
 	margin-bottom: 1rem
 	color:#bf0d0d
 	@media (max-width: 556px)
-		width: 320px 
+		width: 320px
 		font-size: 20px
 
 .hero_main_subtitle
@@ -195,20 +226,20 @@ export default {
 	margin-bottom: 1rem
 	color: #fff
 	@media (max-width: 556px)
-		width: 320px 
+		width: 320px
 		margin-bottom: 0
 		font-size: 20px
 
 .hero_main_text
-	p 
+	p
 		width: 420px
 		font-size: 21px
 		@media (max-width: 556px)
 			width: 80%
 			font-size: 16px
 
-.hero_main_btn 
-	@media (max-width: 556px)	
+.hero_main_btn
+	@media (max-width: 556px)
 		margin: 0
 		margin-top: 2rem
 		line-height: 30px
