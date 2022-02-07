@@ -36,23 +36,23 @@
 						<div class="header-serviceDrop .--menuOpen">
 
 							<!-- Сам event -->
-				
+
 							<div class="header-serviceContent">
 								<div v-for="(item2,index2) in menuServiceItems" class="header-serviceDrop__item-wrap">
-									<div 
+									<div
 										@click="closeDesctopMenu"
-										class="header-nav-link" 
-										:key="index2" 
-										data-header-item 
+										class="header-nav-link"
+										:key="index2"
+										data-header-item
 										v-if="item2.childServices.length">
-										<nuxt-link 
-											:to="$url(item.slug)+$url(item2.slug)" 
+										<nuxt-link
+											:to="$url(item.slug)+'/'+item2.slug"
 											class="header-serviceDrop-title">
 											{{ item2.name }}
 										</nuxt-link>
-										<nuxt-link :to="$url(item.slug)+$url(child2.slug)" class="header-serviceDrop-link" v-for="(child2, index2) in item2.childServices" :key="index2">
+										<nuxt-link :to="$url(item.slug)+'/'+child2.slug" class="header-serviceDrop-link" v-for="(child2, index2) in item2.childServices" :key="index2">
 											{{ child2.name }}
-											<nuxt-link :to="$url(item.slug)+'/' +(child2.slug)" class="header-serviceDrop-link header-serviceDrop-underLink" v-for="(grand,index3) in item2.grandChildService" :key="index3" v-if="grand.parent_id === child2.id">{{ grand['name']['ru'] }}</nuxt-link>
+											<nuxt-link :to="$url(item.slug)+'/'+item2.slug + '/' + child2.slug.split('/')[1] +'/'+ grand['slug']" class="header-serviceDrop-link header-serviceDrop-underLink" v-for="(grand,index3) in item2.grandChildService" :key="index3" v-if="grand.parent_id === child2.id">{{ grand['name']['ru'] }}</nuxt-link>
 										</nuxt-link>
 									</div>
 								</div>
@@ -73,6 +73,9 @@
 		<button data-header-item class="header-burger" @click="openMenu">
 			<burger />
 		</button>
+		<a class="arrowUp" href="#">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="#00236A" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 7.58l5.995 5.988-1.416 1.414-4.579-4.574-4.59 4.574-1.416-1.414 6.006-5.988z"/></svg>
+		</a>
 	</header>
 </template>
 
@@ -96,6 +99,7 @@ export default {
 		return {
 			q: null,
 			searchActive: false,
+			heightArrow: false,
 		};
 	},
 	computed: {
@@ -115,7 +119,19 @@ export default {
 	mounted() {
 		this.animateOnLoad();
 	},
+	created() {
+		if (process.browser){
+			window.addEventListener('scroll', this.onResizeHeight);
+    		this.onResizeHeight();
+		}
+	},
+	destroyed() {
+   		window.removeEventListener('scroll', this.onResizeHeight)
+  	},
 	methods: {
+		onResizeHeight() {
+        	this.heightArrow = window.innerHeight > 600;
+    	},
 		getLocaleUrl(locale) {
 			let items = this.$route.fullPath.split('/').filter(c => c)
 
@@ -154,9 +170,6 @@ export default {
 			document.body.classList.add("--hidden");
 			this.$setTrue("modals.menu");
 		},
-
-		// Добавляет класс &.--menuClose pointer-events: none
-		// После чего функция уходит в class="header-serviceContent" '@click="closeMenu"'
 		closeDesctopMenu() {
 			document.body.classList.add("--menuClose");
 			setTimeout(function(){
@@ -168,6 +181,26 @@ export default {
 </script>
 
 <style lang="sass">
+.arrowUp-show
+	display: flex
+
+.arrowUp
+	position: fixed
+	right: 5%
+	bottom: 3%
+	display: flex
+	justify-content: center
+	align-content: center
+	border-radius: 50%
+	border: 1px solid #fff
+	transition: all 0.5s ease
+	background: #fff
+	&:hover
+		transform: translateY(-10px)
+		box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+	svg
+		width: 50px
+		height: 50px
 .header
 	display: flex
 	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1)
@@ -249,7 +282,7 @@ export default {
 			font-weight: 300
 			color: $color-text
 			text-transform: initial
-			&__social 
+			&__social
 				padding: 0
 			&:last-child
 				margin-bottom: 0
@@ -346,7 +379,7 @@ export default {
 		@media (max-width: 1280px)
 			width: 1180px
 			left: -22rem
-			
+
 		&-title
 			padding-bottom: 8px
 			font-size: 16px
@@ -372,14 +405,14 @@ export default {
 				margin-bottom: 0
 			&:hover
 				color: $color-blue
-		&-underLink 
+		&-underLink
 			display: list-item
 			margin-left: 1rem
 			ist-style-type: revert
 			font-size: 12px
 			@media (max-width: 1547px)
 				font-size: 11px
-			
+
 	&-socials
 		margin-left: auto
 		display: flex

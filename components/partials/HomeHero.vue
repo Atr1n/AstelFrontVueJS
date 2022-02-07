@@ -1,8 +1,7 @@
 <template>
 
 	<div class="start-hero">
-		<div v-show="notificationIsShow" class="preloader notification"></div>
-
+		<div v-show="notificationIsShow" class="preloader"></div>
 		<carousel :responsive="responsive">
 			<div v-for="n of 5" :key="n" v-if="$page()['image'+`${n}`] && locales[locale] === 'Ru'">
 				<div v-if="small">
@@ -121,8 +120,8 @@ export default {
     	},
 
 		hideNotification () {
-        setTimeout(() => {
-			this.notificationIsShow = false
+        	setTimeout(() => {
+				this.notificationIsShow = false
 			}, 1000);
 		},
 

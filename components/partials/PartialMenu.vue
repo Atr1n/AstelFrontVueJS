@@ -44,17 +44,31 @@
 								>{{ child.name }}</nuxt-link>
 
 							<div v-if="item.id == 11" v-for="(item2,index2) in menuServiceItems">
-								<div class="menu-dropdown-link" :key="index2" data-header-item v-if="item2.childServices.length">
-									<nuxt-link :to="$url(item.slug)+$url(item2.slug)" class="menu-dropdown-link">{{ item2.name }}</nuxt-link>
-									<nuxt-link :to="$url(item.slug)+$url(child2.slug)" class="menu-dropdown-link" v-for="(child2, index2) in item2.childServices" :key="index2">
+								<div class="menu-dropdown-link" 
+									:key="index2" 
+									data-header-item 
+									v-if="item2.childServices.length">
+									<nuxt-link 
+										:to="$url(item.slug) + '/' + item2.slug" 
+										class="menu-dropdown-link">{{ item2.name }}
+									</nuxt-link>
+									<nuxt-link 
+										:to="$url(item.slug) + '/' + child2.slug" 
+										class="menu-dropdown-link" 
+										v-for="(child2, index2) in item2.childServices" 
+										:key="index2">
 										{{ child2.name }}
-										<nuxt-link :to="$url(item.slug)+$url(child2.slug)" class="menu-dropdown-link menu-dropdown__last" v-for="(grand,index3) in item2.grandChildService" :key="index3" v-if="grand.parent_id === child2.id">{{ grand['name']['ru'] }}</nuxt-link>
+										<nuxt-link 
+											:to="$url(item.slug) + '/' + item2.slug + '/' + child2.slug.split('/')[1] + '/' + grand['slug']" 
+											class="menu-dropdown-link menu-dropdown__last" 
+											v-for="(grand,index3) in item2.grandChildService" 
+											:key="index3" 
+											v-if="grand.parent_id === child2.id">{{ grand['name']['ru'] }}
+										</nuxt-link>
 									</nuxt-link>
 								</div>
 							</div>
 						</div>
-
-
 					</transition>
 				</template>
 				<nuxt-link :to="$url(item.slug)" class="menu-item" v-else>

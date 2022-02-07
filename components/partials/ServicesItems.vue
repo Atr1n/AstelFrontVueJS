@@ -6,8 +6,8 @@
 				<h4 class="services-items-title">{{ item.name }}</h4>
 				<component style="z-index: 999;position: relative;"
 						:is="isSameHost($pageUrl('services', item.slug)) ? 'nuxt-link' : 'a'"
-						:href="isSameHost($pageUrl('services', item.slug)) ? $url($pageUrl('services', item.slug)) : $pageUrl('services', item.slug)"
-						:to="$url($pageUrl('services', item.slug))" class="buttonMain --transparent animate-home-hero buttonMain-hover"
+						:href="isSameHost($pageUrl('services', item.slug)) ? ($pageUrl('services', item.slug)) : $pageUrl('services', item.slug)"
+						:to="($pageUrl('services', item.slug))" class="buttonMain --transparent animate-home-hero buttonMain-hover"
 						data-on-scroll-paginate
 						v-if="item.serviceImages !== null" >
 						{{ $trans('Подробнее') }}
