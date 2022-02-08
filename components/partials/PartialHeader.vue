@@ -73,7 +73,7 @@
 		<button data-header-item class="header-burger" @click="openMenu">
 			<burger />
 		</button>
-		<a class="arrowUp" href="#">
+		<a :class="{scrollShow: scrollPosition > 400, scrollHide: scrollPosition < 400}" class="arrowUp" href="#">
 			<svg xmlns="http://www.w3.org/2000/svg" fill="#00236A" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 7.58l5.995 5.988-1.416 1.414-4.579-4.574-4.59 4.574-1.416-1.414 6.006-5.988z"/></svg>
 		</a>
 	</header>
@@ -99,7 +99,7 @@ export default {
 		return {
 			q: null,
 			searchActive: false,
-			heightArrow: false,
+			scrollPosition: null,
 		};
 	},
 	computed: {
@@ -118,20 +118,12 @@ export default {
 	},
 	mounted() {
 		this.animateOnLoad();
+		window.addEventListener('scroll', this.updateScroll);
 	},
-	created() {
-		if (process.browser){
-			window.addEventListener('scroll', this.onResizeHeight);
-    		this.onResizeHeight();
-		}
-	},
-	destroyed() {
-   		window.removeEventListener('scroll', this.onResizeHeight)
-  	},
 	methods: {
-		onResizeHeight() {
-        	this.heightArrow = window.innerHeight > 600;
-    	},
+		updateScroll() {
+			this.scrollPosition = window.scrollY
+		},
 		getLocaleUrl(locale) {
 			let items = this.$route.fullPath.split('/').filter(c => c)
 
@@ -181,26 +173,50 @@ export default {
 </script>
 
 <style lang="sass">
-.arrowUp-show
-	display: flex
+@keyframes moveFromTop
+	0%
+		transform: translateY(-25px)
+	100%
+		transform: translateY(0)
+
+.scrollShow
+	opacity: 1
+  	visibility: visible
+	animation: moveFromTop .5s ease-in-out
+    animation-delay: 200ms
+
+.scrollHide
+	opacity: 0
+  	visibility: hidden
 
 .arrowUp
 	position: fixed
 	right: 5%
-	bottom: 3%
+	bottom: 7.5%
 	display: flex
 	justify-content: center
 	align-content: center
 	border-radius: 50%
 	border: 1px solid #fff
-	transition: all 0.5s ease
 	background: #fff
+	-webkit-transition: all .5s ease
+    -moz-transition: all .5s ease
+    transition: all .5s ease
+	@media (max-width: 556px)
+		bottom: 5%
+	
 	&:hover
-		transform: translateY(-10px)
-		box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+		transform: translateY(-8px)
+		box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset
 	svg
 		width: 50px
 		height: 50px
+		-webkit-transition: all .5s ease
+		-moz-transition: all .5s ease
+		transition: all .5s ease
+		&:hover
+			transform: rotate(360deg)
+
 .header
 	display: flex
 	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1)
