@@ -58,7 +58,7 @@
 						data-header-item class="header-nav-link"
 						v-else-if="index === 1"
 						>{{ item.name }}
-						<div class="header-serviceDrop .--menuOpen">
+						<div class=".--menuOpen" v-bind:class="getLocaleMenu()">
 							<div class="header-serviceContent">
 								<div 
 									v-for="(item2,index2) in menuServiceItems" 
@@ -212,6 +212,15 @@ export default {
 				document.body.classList.remove("--menuClose");
 			}, 1000);
 		},
+		getLocaleMenu() {
+			let locale;
+			let menuLoc;
+			locale = this.locale
+			if (locale === 'ru') menuLoc = 'header-serviceDrop'
+			else if (locale === 'en') menuLoc = 'header-serviceDrop-eng'
+			else if (locale === 'kk') menuLoc = 'header-serviceDrop-kz'
+			return menuLoc
+		}
 	},
 };
 </script>
@@ -365,6 +374,7 @@ export default {
 			grid-template-columns: repeat(4, 310px)
 		@media (max-width: 1280px)
 			grid-template-columns: repeat(4, 300px)
+
 	&-serviceDrop
 		position: absolute
 		top: 100%
@@ -389,6 +399,54 @@ export default {
 			left: -535%
 		@media (max-width: 1280px)
 			left: -645%
+
+		// KZZZZ
+
+		&-kz
+			position: absolute
+			top: 100%
+			left: -440%
+			display: block
+			margin: 0 auto
+			z-index: 99999
+			background: #fff
+			border-top: 3px solid $color-blue
+			border-bottom: 3px solid $color-red
+			box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1)
+			// visibility: hidden
+			// opacity: 0
+			transition: all .3s ease
+			@media (max-width: 1700px)
+				left: -550%
+			@media (max-width: 1536px)
+				left: -360%
+			@media (max-width: 1380px)
+				left: -340%
+			@media (max-width: 1280px)
+				left: -445%	
+
+		// ENGGGGG
+
+		&-eng
+			position: absolute
+			top: 100%
+			left: -500%
+			display: block
+			margin: 0 auto
+			z-index: 99999
+			background: #fff
+			border-top: 3px solid $color-blue
+			border-bottom: 3px solid $color-red
+			box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1)
+			// visibility: hidden
+			// opacity: 0
+			transition: all .3s ease
+			@media (max-width: 1750px)
+				left: -510%
+			@media (max-width: 1536px)
+				left: -380%
+			@media (max-width: 1280px)
+				left: -535%	
 		
 		&__item-wrap
 			width: 100%
@@ -417,6 +475,9 @@ export default {
 				left: 100%
 				@media (max-width: 1700px)
 					top: -75%
+					left: 0
+				@media (max-width: 1536px)
+					top: -55%
 					left: 0
 		&-title
 			padding-bottom: 0.5rem
