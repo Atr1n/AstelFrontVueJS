@@ -386,8 +386,8 @@ export default {
 		border-top: 3px solid $color-blue
 		border-bottom: 3px solid $color-red
 		box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1)
-		// visibility: hidden
-		// opacity: 0
+		visibility: hidden
+		opacity: 0
 		transition: all .3s ease
 		@media (max-width: 1700px)
 			left: -550%
@@ -413,8 +413,8 @@ export default {
 			border-top: 3px solid $color-blue
 			border-bottom: 3px solid $color-red
 			box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1)
-			// visibility: hidden
-			// opacity: 0
+			visibility: hidden
+			opacity: 0
 			transition: all .3s ease
 			@media (max-width: 1700px)
 				left: -550%
@@ -438,8 +438,8 @@ export default {
 			border-top: 3px solid $color-blue
 			border-bottom: 3px solid $color-red
 			box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1)
-			// visibility: hidden
-			// opacity: 0
+			visibility: hidden
+			opacity: 0
 			transition: all .3s ease
 			@media (max-width: 1750px)
 				left: -510%
