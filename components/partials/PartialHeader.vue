@@ -11,9 +11,24 @@
 						<arrow />
 					</div>
 					<div class="header-dropdown">
-						<a class="header-dropdown-link header-dropdown-link__social" :href="getLocaleUrl(null)" v-if="locale != 'ru'">{{ locales.ru }}</a>
-						<a class="header-dropdown-link header-dropdown-link__social" :href="getLocaleUrl('en')" v-if="locale != 'en'">{{ locales.en }}</a>
-						<a class="header-dropdown-link header-dropdown-link__social" :href="getLocaleUrl('kk')" v-if="locale != 'kk'">{{ locales.kk }}</a>
+						<a 
+							class="header-dropdown-link header-dropdown-link__social" 
+							:href="getLocaleUrl(null)" 
+							v-if="locale != 'ru'">
+							{{ locales.ru }}
+						</a>
+						<a 
+							class="header-dropdown-link header-dropdown-link__social" 
+							:href="getLocaleUrl('en')" 
+							v-if="locale != 'en'">
+							{{ locales.en }}
+						</a>
+						<a 
+							class="header-dropdown-link header-dropdown-link__social" 
+							:href="getLocaleUrl('kk')" 
+							v-if="locale != 'kk'">
+							{{ locales.kk }}
+						</a>
 					</div>
 				</div>
 				<client-only>
@@ -25,23 +40,32 @@
 					<div class="header-nav-link" :key="index" data-header-item v-if="item.childPages.length">
 						{{ item.name }}
 						<div class="header-dropdown">
-							<nuxt-link :to="$url(item.slug)" class="header-dropdown-link">{{ item.name }}</nuxt-link>
-							<nuxt-link :to="$url(child.slug)" class="header-dropdown-link" v-for="(child, index) in item.childPages" :key="index">{{ child.name }}</nuxt-link>
+							<nuxt-link 
+								:to="$url(item.slug)" 
+								class="header-dropdown-link">
+								{{ item.name }}
+							</nuxt-link>
+							<nuxt-link 
+								:to="$url(child.slug)"
+								class="header-dropdown-link"
+								v-for="(child, index) in item.childPages" 
+								:key="index">
+								{{ child.name }}
+							</nuxt-link>
 						</div>
 					</div>
 					<nuxt-link :to="$url(item.slug)" :key="index"
-							data-header-item class="header-nav-link"
-							v-else-if="index === 1"
+						data-header-item class="header-nav-link"
+						v-else-if="index === 1"
 						>{{ item.name }}
 						<div class="header-serviceDrop .--menuOpen">
-
-							<!-- Сам event -->
-
 							<div class="header-serviceContent">
-								<div v-for="(item2,index2) in menuServiceItems" class="header-serviceDrop__item-wrap">
+								<div 
+									v-for="(item2,index2) in menuServiceItems" 
+									class="header-serviceDrop__item-wrap">
 									<div
 										@click="closeDesctopMenu"
-										class="header-nav-link"
+										class="header-drop-link"
 										:key="index2"
 										data-header-item
 										v-if="item2.childServices.length">
@@ -50,16 +74,33 @@
 											class="header-serviceDrop-title">
 											{{ item2.name }}
 										</nuxt-link>
-										<nuxt-link :to="$url(item.slug)+'/'+child2.slug" class="header-serviceDrop-link" v-for="(child2, index2) in item2.childServices" :key="index2">
+										<nuxt-link 
+											:to="$url(item.slug)+'/'+child2.slug" 
+											class="header-serviceDrop-link" 
+											v-for="(child2, index2) in item2.childServices" 
+											:key="index2">
 											{{ child2.name }}
-											<nuxt-link :to="$url(item.slug)+'/'+item2.slug + '/' + child2.slug.split('/')[1] +'/'+ grand['slug']" class="header-serviceDrop-link header-serviceDrop-underLink" v-for="(grand,index3) in item2.grandChildService" :key="index3" v-if="grand.parent_id === child2.id">{{ grand['name']['ru'] }}</nuxt-link>
+											<nuxt-link 
+												:to="$url(item.slug)+'/'+item2.slug + '/' + child2.slug.split('/')[1] +'/'+ grand['slug']"
+												class="header-serviceDrop-link header-serviceDrop-underLink" 
+												v-for="(grand,index3) in item2.grandChildService" 
+												:key="index3" 
+												v-if="grand.parent_id === child2.id">
+												{{ grand['name']['ru'] }}
+											</nuxt-link>
 										</nuxt-link>
 									</div>
 								</div>
 							</div>
 						</div>
 					</nuxt-link>
-					<nuxt-link :to="$url(item.slug)" :key="index" data-header-item class="header-nav-link" v-else>{{ item.name }}</nuxt-link>
+					<nuxt-link 
+						:to="$url(item.slug)" 
+						:key="index" data-header-item class="header-nav-link"
+						v-else
+						>
+						{{ item.name }}
+					</nuxt-link>
 				</template>
 
 				<div data-header-item class="header-search-wrp" :class="{'--active': searchActive}">
@@ -73,7 +114,10 @@
 		<button data-header-item class="header-burger" @click="openMenu">
 			<burger />
 		</button>
-		<a :class="{scrollShow: scrollPosition > 400, scrollHide: scrollPosition < 400}" class="arrowUp" href="#">
+		<a 
+			:class="{scrollShow: scrollPosition > 400, scrollHide: scrollPosition < 400}"
+			class="arrowUp" 
+			href="#">
 			<svg xmlns="http://www.w3.org/2000/svg" fill="#00236A" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 7.58l5.995 5.988-1.416 1.414-4.579-4.574-4.59 4.574-1.416-1.414 6.006-5.988z"/></svg>
 		</a>
 	</header>
@@ -207,7 +251,8 @@ export default {
 	
 	&:hover
 		transform: translateY(-8px)
-		box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset
+		box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, 
+		rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset
 	svg
 		width: 50px
 		height: 50px
@@ -222,6 +267,8 @@ export default {
 	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1)
 	position: relative
 	z-index: 10
+	&-drop-link
+		padding: 1.2rem 0.5rem
 	&-logo
 		display: flex
 		align-items: center
@@ -306,100 +353,75 @@ export default {
 				color: $color-blue
 	&-serviceContent
 		display: grid
-		grid-template-columns: repeat(5, 1fr)
-		padding: 1rem 2rem
+		grid-template-columns: repeat(5, 360px)
+		grid-template-rows: 360px
+		padding: 0.5rem 1.5rem
+		@media (max-width: 1875px)
+			grid-template-columns: repeat(5, 325px)
+		@media (max-width: 1700px)
+			grid-template-columns: repeat(4, 320px)
+			grid-template-rows: 1fr
+		@media (max-width: 1340px)
+			grid-template-columns: repeat(4, 310px)
 		@media (max-width: 1280px)
-			grid-template-columns: repeat(4, 1fr)
+			grid-template-columns: repeat(4, 300px)
 	&-serviceDrop
 		position: absolute
-		width: 1800px
-		top: 4.7rem
-		left: -21.5rem
+		top: 100%
+		left: -610%
+		display: block
 		margin: 0 auto
-		z-index: 9999
+		z-index: 99999
 		background: #fff
 		border-top: 3px solid $color-blue
 		border-bottom: 3px solid $color-red
 		box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1)
-		visibility: hidden
-		opacity: 0
+		// visibility: hidden
+		// opacity: 0
 		transition: all .3s ease
-		&__item-wrap
-			width: 300px
-			@media (max-width: 1280px)
-				width: 270px
-			&:nth-child(4)
-				@media (max-width: 1750px)
-					position: relative
-					right: 1rem
-			&:nth-child(5)
-				position: relative
-				top: 16.5rem
-				right: 21.6rem
-				@media (max-width: 1750px)
-					top: 16.2rem
-					right: 21rem
-				@media (max-width: 1536px)
-					top: 16rem
-					right: 19.8rem
-				@media (max-width: 1280px)
-					top: -16.4rem
-					right: -51rem
-			&:nth-child(6)
-				position: relative
-				left: 21.5rem
-				margin-top: -11rem
-				@media (max-width: 1750px)
-					left: 19.7rem
-				@media (max-width: 1536px)
-					left: 18.7rem
-					margin-top: -16.4rem
-				@media (max-width: 1280px)
-					left: 0
-			&:nth-child(7)
-				position: relative
-				left: 21.5rem
-				margin-top: -11rem
-				@media (max-width: 1750px)
-					left: 19.7rem
-				@media (max-width: 1536px)
-					left: 18.7rem
-					margin-top: -16.4rem
-				@media (max-width: 1280px)
-					position: static
-			&:nth-child(8)
-				position: relative
-				top: -16rem
-				left: 42.5rem
-				margin-top: -12rem
-				@media (max-width: 1750px)
-					top: -15.5rem
-					left: 39rem
-				@media (max-width: 1536px)
-					top: -20.5rem
-					left: 33rem
-				@media (max-width: 1280px)
-					margin-top: 0
-					top: 0
-					left: -52rem
-
-		@media (max-width: 1747px)
-			width: 1650px
-			left: -22rem
-		@media (max-width: 1547px)
-			width: 1450px
-			left: -22.5rem
-		@media (max-width: 1366px)
-			width: 1280px
-			left: -22rem
+		@media (max-width: 1700px)
+			left: -550%
+		@media (max-width: 1536px)
+			left: -480%
+		@media (max-width: 1440px)
+			left: -550%
+		@media (max-width: 1380px)
+			left: -535%
 		@media (max-width: 1280px)
-			width: 1180px
-			left: -22rem
-
+			left: -645%
+		
+		&__item-wrap
+			width: 100%
+			max-width: 290px
+			&:nth-child(1)
+				order: 1
+			&:nth-child(2)
+				order: 2
+			&:nth-child(3)
+				order: 3
+			&:nth-child(4)
+				order: 4
+			&:nth-child(5)
+				order: 5
+			&:nth-child(6)
+				order: 6
+			&:nth-child(7)
+				order: 7
+			&:nth-child(8)
+				order: 4
+			&:nth-child(5),
+			&:nth-child(6),
+			&:nth-child(7),
+				position: relative
+				top: -80%
+				left: 100%
+				@media (max-width: 1700px)
+					top: -75%
+					left: 0
 		&-title
-			padding-bottom: 8px
+			padding-bottom: 0.5rem
 			font-size: 16px
-			color: #868686
+			color: #303030
 			text-transform: uppercase
 			opacity: .6
 			&:last-child
@@ -412,11 +434,6 @@ export default {
 			font-weight: 500
 			text-decoration: underline black
 			text-transform: initial
-			@media (max-width: 1747px)
-				font-size: 13px
-			@media (max-width: 1547px)
-				width: 200px
-				font-size: 12px
 			&:last-child
 				margin-bottom: 0
 			&:hover
@@ -458,8 +475,6 @@ export default {
 				.header-serviceDrop
 					opacity: 1
 					visibility: visible
-			&:last-of-type
-				margin-right: 0
 	&-search
 		&-wrp
 			padding: 35px 0
