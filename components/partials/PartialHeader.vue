@@ -216,7 +216,7 @@ export default {
 			let locale;
 			let menuLoc;
 			locale = this.locale
-			if (locale === 'ru') menuLoc = 'header-serviceDrop'
+			if (locale === 'ru') menuLoc = 'header-serviceDrop' 
 			else if (locale === 'en') menuLoc = 'header-serviceDrop-eng'
 			else if (locale === 'kk') menuLoc = 'header-serviceDrop-kz'
 			return menuLoc
@@ -309,9 +309,6 @@ export default {
 					margin-bottom: 5px
 			&:hover
 				.header-dropdown
-					opacity: 1
-					visibility: visible
-				.header-serviceDrop
 					opacity: 1
 					visibility: visible
 		&-current
@@ -534,6 +531,12 @@ export default {
 					opacity: 1
 					visibility: visible
 				.header-serviceDrop
+					opacity: 1
+					visibility: visible
+				.header-serviceDrop-kz
+					opacity: 1
+					visibility: visible
+				.header-serviceDrop-eng
 					opacity: 1
 					visibility: visible
 	&-search
