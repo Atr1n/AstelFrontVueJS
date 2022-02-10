@@ -37,7 +37,12 @@
 			</div>
 			<nav class="header-nav">
 				<template v-for="(item, index) in menuItems">
-					<div class="header-nav-link" :key="index" data-header-item v-if="item.childPages.length">
+					<div 
+                        @click="closeDesctopMenu"
+                        class="header-nav-link" 
+                        :key="index" 
+                        data-header-item 
+                        v-if="item.childPages.length">
 						{{ item.name }}
 						<div class="header-dropdown">
 							<nuxt-link 
